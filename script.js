@@ -133,6 +133,11 @@ if (form) {
       formStatus.textContent = 'Thank you. Our team will contact you shortly.';
       formStatus.className = 'form-status success';
       form.reset();
+
+      // Meta Pixel - Track Lead on form submission
+      if (typeof fbq !== 'undefined') {
+        fbq('track', 'Lead');
+      }
     } catch (error) {
       formStatus.textContent = 'Something went wrong. Please try again or contact us on WhatsApp.';
       formStatus.className = 'form-status error';
