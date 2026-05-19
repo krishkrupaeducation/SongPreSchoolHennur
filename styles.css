@@ -359,9 +359,6 @@ h3 {
 }
 .offer-content {
   padding: 28px;
-}
-.offer-content {
-  padding: 28px;
   display: flex;
   flex-direction: column;
   flex: 1;
