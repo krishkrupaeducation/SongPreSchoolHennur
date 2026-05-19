@@ -339,6 +339,8 @@ h3 {
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
 }
 .offer-image-wrap {
   width: 100%;
@@ -358,9 +360,11 @@ h3 {
 .offer-content {
   padding: 28px;
 }
-.offer-content h3 {
-  text-align: center;
-  color: var(--pink);
+.offer-content {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 .offer-time {
   font-weight: 700;
