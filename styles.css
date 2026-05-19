@@ -363,6 +363,10 @@ h3 {
   flex-direction: column;
   flex: 1;
 }
+.offer-content h3 {
+  text-align: center;
+  color: var(--pink);
+}
 .offer-time {
   font-weight: 700;
   text-align: center;
@@ -372,6 +376,7 @@ h3 {
 .offer-content p:last-child {
   margin-top: auto;
 }
+
 /* ADMISSION FORM */
 .admission-section {
   background: var(--cream);
