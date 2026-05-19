@@ -372,7 +372,9 @@ h3 {
   color: var(--text);
   margin-bottom: 18px;
 }
-
+.offer-content p:last-child {
+  margin-top: auto;
+}
 /* ADMISSION FORM */
 .admission-section {
   background: var(--cream);
