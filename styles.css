@@ -367,6 +367,12 @@ h3 {
   text-align: center;
   color: var(--pink);
 }
+
+@media (min-width: 981px) {
+  .offer-content h3 {
+    min-height: 3.74rem;
+  }
+}
 .offer-time {
   font-weight: 700;
   text-align: center;
