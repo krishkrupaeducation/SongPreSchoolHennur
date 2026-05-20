@@ -199,18 +199,13 @@
         <p class="section-subtitle center">Each environment is thoughtfully designed to match your child's age, development, and learning needs.</p>
 
         <div class="env-shell">
-          <div class="env-image-card">
-            <img src="assets/3-HalfDay.png" alt="Learning Environment" class="env-main-img" id="env-main-img" />
-          </div>
-          <div class="env-side-panel">
-            <p class="env-counter"><span id="env-index">1</span> / 4</p>
+          <div class="env-text-panel">
             <p class="env-age" id="env-age">Toddler | 2 to 3 years</p>
             <h3 class="env-name" id="env-name">Bright</h3>
             <p class="env-desc" id="env-desc">Our Toddler environment, Bright, is a warm, nurturing space where children take their first confident steps into learning. Through sensory play, stories, movement, music, and simple routines, children begin building independence, communication, curiosity, and comfort in a safe preschool setting.</p>
-            <div class="env-nav">
-              <button class="env-nav-btn" id="env-prev" type="button" aria-label="Previous environment">&#8592;</button>
-              <button class="env-nav-btn active" id="env-next" type="button" aria-label="Next environment">&#8594;</button>
-            </div>
+          </div>
+          <div class="env-side-panel">
+            <p class="env-counter"><span id="env-index">1</span> / 4</p>
             <div class="env-thumbs" id="env-thumbs"></div>
           </div>
         </div>
@@ -222,16 +217,17 @@
       <div class="container">
         <p class="eyebrow center">Beyond School Hours</p>
         <h2 class="center">Daycare &amp; Afterschool Care</h2>
-        <p class="section-subtitle center">Safe, caring, and engaging support for your child throughout the day and after school.</p>
-        <div class="daycare-grid">
-          <div class="daycare-card">
-            <h3>Daycare</h3>
-            <p>Our Daycare is a safe, caring, and engaging environment where children feel at home beyond preschool hours. With structured routines, rest time, nourishment, supervised play, creative activities, and warm caregivers, children are supported through the day with comfort, consistency, and care.</p>
-          </div>
-          <div class="daycare-card">
-            <h3>Afterschool Care</h3>
-            <p>Our Afterschool Care program gives children a safe and happy space after regular school hours. Children get time to unwind, refresh, rest, play, follow simple routines, and participate in age-appropriate activities, while parents have the comfort of knowing they are cared for.</p>
-          </div>
+
+        <div class="tab-buttons daycare-tabs">
+          <button class="tab-button active" data-daytab="daycare">Daycare</button>
+          <button class="tab-button" data-daytab="afterschool">Afterschool Care</button>
+        </div>
+
+        <div class="tab-panel active" id="daytab-daycare">
+          <p>Our Daycare is a safe, caring, and engaging environment where children feel at home beyond preschool hours. With structured routines, rest time, nourishment, supervised play, creative activities, and warm caregivers, children are supported through the day with comfort, consistency, and care.</p>
+        </div>
+        <div class="tab-panel" id="daytab-afterschool">
+          <p>Our Afterschool Care program gives children a safe and happy space after regular school hours. Children get time to unwind, refresh, rest, play, follow simple routines, and participate in age-appropriate activities, while parents have the comfort of knowing they are cared for.</p>
         </div>
       </div>
     </section>
@@ -244,26 +240,27 @@
         <p class="section-subtitle center">Passionate educators, caregivers, and leaders dedicated to every child's journey.</p>
 
         <div class="team-shell">
-          <div class="team-photo-panel">
-            <img src="https://placehold.co/340x400/e8f4fd/3399cc?text=Karuna+G" alt="Karuna G" class="team-main-photo" id="team-main-photo" />
-          </div>
-          <div class="team-info-panel">
-            <p class="team-counter"><span id="team-index">1</span> / 6</p>
-            <h3 class="team-name" id="team-name">Karuna G</h3>
-            <p class="team-designation" id="team-designation">Chief Academic Officer</p>
-            <p class="team-bio" id="team-bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
-            <div class="team-contact-wrap" id="team-contact-wrap" style="display:none;">
-              <a href="tel:+918105657664" class="team-contact-btn">Call</a>
-              <a href="https://wa.me/918105657664" target="_blank" rel="noreferrer" class="team-contact-btn">WhatsApp</a>
-              <a href="mailto:hennur_blr@songpreschool.com" class="team-contact-btn">Email</a>
+          <button class="team-arrow" id="team-prev" aria-label="Previous">&#8592;</button>
+
+          <div class="team-card">
+            <div class="team-photo-panel">
+              <img src="https://placehold.co/320x380/e8f4fd/3399cc?text=Photo" alt="" class="team-main-photo" id="team-main-photo" />
             </div>
-            <div class="team-nav">
-              <button class="team-nav-btn" id="team-prev" type="button" aria-label="Previous">&#8592;</button>
-              <button class="team-nav-btn active" id="team-next" type="button" aria-label="Next">&#8594;</button>
+            <div class="team-info-panel">
+              <h3 class="team-name" id="team-name">Karuna G</h3>
+              <p class="team-designation" id="team-designation">Chief Academic Officer</p>
+              <p class="team-bio" id="team-bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p>
+              <div class="team-contact-wrap" id="team-contact-wrap" style="display:none;">
+                <a href="tel:+918105657664" class="team-contact-btn">Call</a>
+                <a href="https://wa.me/918105657664" target="_blank" rel="noreferrer" class="team-contact-btn">WhatsApp</a>
+                <a href="mailto:hennur_blr@songpreschool.com" class="team-contact-btn">Email</a>
+              </div>
             </div>
-            <div class="team-thumbs" id="team-thumbs"></div>
           </div>
+
+          <button class="team-arrow" id="team-next" aria-label="Next">&#8594;</button>
         </div>
+        <p class="team-counter-label"><span id="team-index">1</span> / 6</p>
       </div>
     </section>
 
