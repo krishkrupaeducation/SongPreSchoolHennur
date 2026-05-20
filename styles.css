@@ -1648,3 +1648,143 @@ h3 {
     font-size: 7.5pt;
   }
 }
+
+/* ENVIRONMENTS */
+.environments-section { background: var(--bg-soft); }
+.env-shell {
+  margin-top: 42px;
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+.env-tabs { display: flex; border-bottom: 1px solid var(--border); }
+.env-tab {
+  flex: 1;
+  padding: 18px 12px;
+  background: var(--white);
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-family: 'Baloo 2', cursive;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--muted);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+.env-tab:hover { color: var(--blue); background: #f0f8fd; }
+.env-tab.active { color: var(--blue); border-bottom-color: var(--blue); background: #f0f8fd; }
+.env-panel { display: none; padding: 40px 48px; }
+.env-panel.active { display: block; }
+.env-label {
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.env-name { color: var(--pink); font-size: 2.2rem; margin-bottom: 16px; }
+.env-panel p { font-size: 1.08rem; color: var(--muted); max-width: 780px; line-height: 1.8; }
+
+/* DAYCARE & AFTERSCHOOL */
+.daycare-section { background: var(--blue); color: var(--white); }
+.daycare-section h2 { color: var(--white); }
+.daycare-section .section-subtitle { color: rgba(255,255,255,0.86); }
+.daycare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-top: 42px;
+}
+.daycare-card {
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: var(--radius-xl);
+  padding: 40px 36px;
+  transition: background 0.2s ease;
+}
+.daycare-card:hover { background: rgba(255,255,255,0.18); }
+.daycare-icon { font-size: 2.4rem; margin-bottom: 16px; }
+.daycare-card h3 { color: var(--white); font-size: 1.8rem; margin-bottom: 14px; }
+.daycare-card p { color: rgba(255,255,255,0.9); font-size: 1.05rem; line-height: 1.8; }
+
+/* TEAM */
+.team-section { background: var(--cream); }
+.team-carousel-wrap { display: flex; align-items: center; gap: 16px; margin-top: 42px; }
+.team-nav-btn {
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--text);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+  box-shadow: var(--shadow);
+}
+.team-nav-btn:hover { background: var(--blue); color: var(--white); border-color: var(--blue); }
+.team-carousel { flex: 1; overflow: hidden; border-radius: var(--radius-xl); }
+.team-card {
+  display: none;
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  grid-template-columns: 220px 1fr;
+}
+.team-card.active { display: grid; }
+.team-photo-wrap { background: #e8f4fd; display: flex; align-items: stretch; }
+.team-photo { width: 220px; height: 100%; min-height: 260px; object-fit: cover; display: block; }
+.team-info { padding: 36px 40px; display: flex; flex-direction: column; justify-content: center; }
+.team-name { font-size: 1.7rem; color: var(--text); margin-bottom: 4px; }
+.team-designation { font-size: 1rem; font-weight: 700; color: var(--blue); margin-bottom: 16px; }
+.team-bio { color: var(--muted); font-size: 1rem; line-height: 1.75; margin-bottom: 0; }
+.team-contact { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.team-contact-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--text);
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: 0.2s ease;
+}
+.team-contact-btn:hover { background: var(--blue); color: var(--white); border-color: var(--blue); }
+.team-dots { display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
+.team-dot {
+  width: 10px; height: 10px; border-radius: 50%; border: none;
+  background: var(--border); cursor: pointer; padding: 0; transition: background 0.2s ease;
+}
+.team-dot.active { background: var(--blue); }
+
+/* RESPONSIVE — new sections */
+@media (max-width: 980px) {
+  .offer-content { display: flex; flex-direction: column; }
+  .offer-content h3 { margin-bottom: 12px; align-self: auto; }
+  .offer-time { align-self: auto; padding-top: 0; }
+  .daycare-grid { grid-template-columns: 1fr; }
+  .env-tabs { flex-wrap: wrap; }
+  .env-tab { flex: 1 1 45%; }
+  .env-panel { padding: 32px 28px; }
+  .team-card { grid-template-columns: 1fr; }
+  .team-photo { width: 100%; height: 240px; min-height: unset; }
+  .team-info { padding: 28px; }
+}
+@media (max-width: 760px) {
+  .env-tabs { flex-direction: column; }
+  .env-tab { border-bottom: none; border-left: 3px solid transparent; text-align: left; padding: 14px 20px; }
+  .env-tab.active { border-left-color: var(--blue); border-bottom: none; }
+  .env-panel { padding: 24px 20px; }
+  .daycare-card { padding: 28px 22px; }
+  .team-carousel-wrap { gap: 8px; }
+  .team-nav-btn { width: 40px; height: 40px; font-size: 1rem; }
+  .team-contact-btn { padding: 8px 14px; font-size: 0.86rem; }
+}

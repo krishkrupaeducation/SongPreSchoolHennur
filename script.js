@@ -1,6 +1,6 @@
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzi_A12N-KEm-uwsSJiTIZmEblWXyimlIVC4Q73Pfrpn82rM3J-X22g8WT3LeZgSfJqag/exec';
 
-// TAB SWITCHING
+// TAB SWITCHING (About section)
 const tabButtons = document.querySelectorAll('.tab-button');
 const tabPanels = document.querySelectorAll('.tab-panel');
 
@@ -9,9 +9,22 @@ tabButtons.forEach((button) => {
     const key = button.dataset.tab;
     tabButtons.forEach((btn) => btn.classList.remove('active'));
     tabPanels.forEach((panel) => panel.classList.remove('active'));
-
     button.classList.add('active');
     document.getElementById(`tab-${key}`).classList.add('active');
+  });
+});
+
+// ENVIRONMENTS SECTION
+const envTabs = document.querySelectorAll('.env-tab');
+const envPanels = document.querySelectorAll('.env-panel');
+
+envTabs.forEach((tab) => {
+  tab.addEventListener('click', () => {
+    const key = tab.dataset.env;
+    envTabs.forEach((t) => t.classList.remove('active'));
+    envPanels.forEach((p) => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById(`env-${key}`).classList.add('active');
   });
 });
 
@@ -82,13 +95,50 @@ if (galleryPrev && galleryNext) {
     galleryIndex = (galleryIndex - 1 + galleryItems.length) % galleryItems.length;
     renderGallery();
   });
-
   galleryNext.addEventListener('click', () => {
     galleryIndex = (galleryIndex + 1) % galleryItems.length;
     renderGallery();
   });
-
   renderGallery();
+}
+
+// TEAM CAROUSEL
+const teamCards = document.querySelectorAll('.team-card');
+const teamPrev = document.getElementById('team-prev');
+const teamNext = document.getElementById('team-next');
+const teamDotsContainer = document.getElementById('team-dots');
+let teamIndex = 0;
+
+function renderTeam() {
+  teamCards.forEach((card, i) => {
+    card.classList.toggle('active', i === teamIndex);
+  });
+  if (teamDotsContainer) {
+    const dots = teamDotsContainer.querySelectorAll('.team-dot');
+    dots.forEach((dot, i) => dot.classList.toggle('active', i === teamIndex));
+  }
+}
+
+if (teamPrev && teamNext && teamCards.length) {
+  // Build dots
+  teamCards.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'team-dot';
+    dot.setAttribute('aria-label', `Go to team member ${i + 1}`);
+    dot.addEventListener('click', () => { teamIndex = i; renderTeam(); });
+    teamDotsContainer.appendChild(dot);
+  });
+
+  teamPrev.addEventListener('click', () => {
+    teamIndex = (teamIndex - 1 + teamCards.length) % teamCards.length;
+    renderTeam();
+  });
+  teamNext.addEventListener('click', () => {
+    teamIndex = (teamIndex + 1) % teamCards.length;
+    renderTeam();
+  });
+
+  renderTeam();
 }
 
 // ADMISSION FORM
@@ -134,7 +184,6 @@ if (form) {
       formStatus.className = 'form-status success';
       form.reset();
 
-      // Meta Pixel - Track Lead on form submission
       if (typeof fbq !== 'undefined') {
         fbq('track', 'Lead');
       }
