@@ -25,7 +25,7 @@ document.querySelectorAll('.tab-button[data-daytab]').forEach((button) => {
 // ENVIRONMENTS
 const envItems = [
   { age: 'Toddler | 2 to 3 years', name: 'Bright', desc: 'Our Toddler environment, Bright, is a warm, nurturing space where children take their first confident steps into learning. Through sensory play, stories, movement, music, and simple routines, children begin building independence, communication, curiosity, and comfort in a safe preschool setting.' },
-  { age: 'Pre-KG | 3 to 4 years', name: 'Shine', desc: 'Our Pre-KG environment, Shine, helps children grow through joyful exploration and guided play. With hands-on activities, early language, creative expression, social interaction, and discovery-based learning, children begin to shine as confident, curious, and expressive learners.' },
+  { age: 'Pre-KG | 3 to 4 years', name: 'Shine', desc: 'Our Pre-KG environment, Shine, helps children grow through joyful exploration and guided play. With hands-on activities, storytelling, early language development, creative expression, social interaction, and discovery-based learning, each child is encouraged to explore at their own pace, ask questions freely, and develop a genuine love for learning as they begin to shine as confident, curious, and expressive individuals.' },
   { age: 'Jr. KG | 4 to 5 years', name: 'Spark', desc: 'Our Jr. KG environment, Spark, encourages children to ask questions, solve problems, create, and collaborate. Through project-based activities, early literacy and numeracy, storytelling, art, music, and purposeful play, children build strong foundations for school readiness and independent thinking.' },
   { age: 'Sr. KG | 5 to 6 years', name: 'Ignite', desc: 'Our Sr. KG environment, Ignite, prepares children for the next stage of formal schooling with confidence. Children strengthen literacy, numeracy, communication, independence, creativity, and classroom readiness through meaningful projects, hands-on learning, collaboration, and age-appropriate academic foundations.' }
 ];
@@ -59,12 +59,12 @@ if (envThumbs) renderEnv();
 
 // TEAM
 const teamItems = [
-  { name: 'Karuna G',       designation: 'Chief Academic Officer', bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.', contact: false, img: 'https://placehold.co/320x380/e8f4fd/3399cc?text=Karuna+G' },
-  { name: 'Kavitha Y',      designation: 'Centre Head',            bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.', contact: true,  img: 'https://placehold.co/320x380/e8f4fd/3399cc?text=Kavitha+Y' },
-  { name: 'Zaheerunnisa A', designation: 'Teacher',                bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.', contact: false, img: 'https://placehold.co/320x380/e8f4fd/3399cc?text=Zaheerunnisa' },
-  { name: 'Viji',           designation: 'Support Staff',          bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.', contact: false, img: 'https://placehold.co/320x380/e8f4fd/3399cc?text=Viji' },
-  { name: 'Raghu B',        designation: 'CEO',                    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.', contact: false, img: 'https://placehold.co/320x380/e8f4fd/3399cc?text=Raghu+B' },
-  { name: 'Varun B',        designation: 'COO',                    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.', contact: false, img: 'https://placehold.co/320x380/e8f4fd/3399cc?text=Varun+B' }
+  { name: 'Karuna G',       designation: 'Chief Academic Officer', bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.', img: 'https://placehold.co/320x380/e8f4fd/3399cc?text=Karuna+G' },
+  { name: 'Kavitha Y',      designation: 'Centre Head',            bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.',  img: 'https://placehold.co/320x380/e8f4fd/3399cc?text=Kavitha+Y' },
+  { name: 'Zaheerunnisa A', designation: 'Teacher',                bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.', img: 'https://placehold.co/320x380/e8f4fd/3399cc?text=Zaheerunnisa' },
+  { name: 'Viji',           designation: 'Support Staff',          bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.', img: 'https://placehold.co/320x380/e8f4fd/3399cc?text=Viji' },
+  { name: 'Raghu B',        designation: 'CEO',                    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.', img: 'https://placehold.co/320x380/e8f4fd/3399cc?text=Raghu+B' },
+  { name: 'Varun B',        designation: 'COO',                    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.', img: 'https://placehold.co/320x380/e8f4fd/3399cc?text=Varun+B' }
 ];
 
 let teamIndex = 0;
@@ -72,7 +72,6 @@ const teamPhoto      = document.getElementById('team-main-photo');
 const teamName       = document.getElementById('team-name');
 const teamDesig      = document.getElementById('team-designation');
 const teamBio        = document.getElementById('team-bio');
-const teamContact    = document.getElementById('team-contact-wrap');
 const teamIndexEl    = document.getElementById('team-index');
 const teamPrev       = document.getElementById('team-prev');
 const teamNext       = document.getElementById('team-next');
@@ -83,7 +82,6 @@ function renderTeam() {
   if (teamName)    teamName.textContent  = item.name;
   if (teamDesig)   teamDesig.textContent = item.designation;
   if (teamBio)     teamBio.textContent   = item.bio;
-  if (teamContact) teamContact.style.display = item.contact ? 'flex' : 'none';
   if (teamIndexEl) teamIndexEl.textContent   = String(teamIndex + 1);
 }
 
