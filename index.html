@@ -306,6 +306,80 @@
       </div>
     </section>
 
+    <!-- ADMISSION FORM -->
+    <section class="section admission-section" id="admission">
+      <div class="container narrow">
+        <p class="eyebrow center">Admissions</p>
+        <h2 class="center">Admission Enquiry</h2>
+        <p class="section-subtitle center">
+          Fill in the form below and our team will get in touch with you shortly.
+        </p>
+
+        <div class="form-card">
+          <form id="admission-form">
+            <div class="form-grid">
+              <div class="field">
+                <label for="childName">Child's Name *</label>
+                <input id="childName" name="childName" type="text" required />
+              </div>
+
+              <div class="field">
+                <label for="programme">Programme *</label>
+                <select id="programme" name="programme" required>
+                  <option value="" disabled selected>Select Programme</option>
+                  <option value="Half Day Preschool">Half Day (Preschool)</option>
+                  <option value="Full Day Care">Full Day Care (Preschool + Day Care)</option>
+                  <option value="After School Care">After School Care (Day Care + Activity Centre)</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+
+              <div class="field">
+                <label for="childDOB">Child DOB *</label>
+                <input id="childDOB" name="childDOB" type="date" required />
+              </div>
+
+              <div class="field">
+                <label for="parentName">Parent's Name *</label>
+                <input id="parentName" name="parentName" type="text" required />
+              </div>
+
+              <div class="field">
+                <label for="email">Email Address *</label>
+                <input id="email" name="email" type="email" required />
+              </div>
+
+              <div class="field">
+                <label for="phone">Phone *</label>
+                <input id="phone" name="phone" type="tel" required
+                  pattern="[6-9][0-9]{9}"
+                  maxlength="10"
+                  placeholder="10-digit mobile number"
+                  title="Please enter a valid 10-digit Indian mobile number (starting with 6, 7, 8 or 9)" />
+              </div>
+
+              <div class="field field-full-mobile">
+                <label for="area">Area *</label>
+                <input id="area" name="area" type="text" required />
+              </div>
+
+              <div class="field field-full">
+                <label for="message">Message</label>
+                <textarea id="message" name="message">Hi, please contact me. I would like to know more about your centre.</textarea>
+              </div>
+            </div>
+
+
+
+            <div class="form-actions">
+              <button class="btn btn-primary" type="submit" id="submit-btn">Submit Enquiry</button>
+            </div>
+            <p id="form-status" class="form-status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+
     <!-- TEAM -->
     <section class="section team-section">
       <div class="container">
