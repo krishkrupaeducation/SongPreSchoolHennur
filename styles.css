@@ -379,6 +379,7 @@ h3 {
   text-align: center;
   color: var(--text);
   margin-bottom: 18px;
+  margin-top: auto;
 }
 .offer-content p:last-child {
   margin-top: auto;
