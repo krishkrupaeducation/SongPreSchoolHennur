@@ -1707,20 +1707,16 @@ h3 {
   background: var(--white);
   text-align: left;
   color: var(--text);
-  font-size: 0.86rem;
-  font-weight: 700;
   cursor: pointer;
   transition: 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 .env-thumb.active {
   border-color: var(--pink);
   background: #fff0f6;
   color: var(--pink);
-}
-.env-thumb {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
 }
 .env-thumb-name {
   font-size: 0.92rem;
