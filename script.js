@@ -49,7 +49,7 @@ function renderEnv() {
       const btn = document.createElement('button');
       btn.type = 'button';
       btn.className = 'env-thumb' + (i === envIndex ? ' active' : '');
-      btn.textContent = entry.name;
+      btn.innerHTML = '<span class="env-thumb-name">' + entry.name + '</span><span class="env-thumb-age">' + entry.age + '</span>';
       btn.addEventListener('click', () => { envIndex = i; renderEnv(); });
       envThumbs.appendChild(btn);
     });

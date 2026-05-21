@@ -1717,6 +1717,20 @@ h3 {
   background: #fff0f6;
   color: var(--pink);
 }
+.env-thumb {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.env-thumb-name {
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+.env-thumb-age {
+  font-size: 0.72rem;
+  font-weight: 400;
+  opacity: 0.75;
+}
 
 /* DAYCARE — styled like about section */
 .daycare-section { background: var(--white); }
