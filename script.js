@@ -59,12 +59,42 @@ if (envThumbs) renderEnv();
 
 // TEAM
 const teamItems = [
-  { name: 'Karuna G',       designation: 'Chief Academic Officer', bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.', img: 'https://placehold.co/320x380/e8f4fd/3399cc?text=Karuna+G' },
-  { name: 'Kavitha Y',      designation: 'Centre Head',            bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.',  img: 'https://placehold.co/320x380/e8f4fd/3399cc?text=Kavitha+Y' },
-  { name: 'Zaheerunnisa A', designation: 'Teacher',                bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.', img: 'https://placehold.co/320x380/e8f4fd/3399cc?text=Zaheerunnisa' },
-  { name: 'Viji',           designation: 'Support Staff',          bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.', img: 'https://placehold.co/320x380/e8f4fd/3399cc?text=Viji' },
-  { name: 'Raghu B',        designation: 'CEO',                    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.', img: 'https://placehold.co/320x380/e8f4fd/3399cc?text=Raghu+B' },
-  { name: 'Varun B',        designation: 'COO',                    bio: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.', img: 'https://placehold.co/320x380/e8f4fd/3399cc?text=Varun+B' }
+  {
+    name: 'Karuna G',
+    designation: 'Chief Academic Officer',
+    img: 'assets/10-Karuna.png',
+    bio: 'Karuna brings over 15 years of experience in education, with deep expertise in early childhood learning, Montessori practice, and child development. She is AMI-trained for both the 3 to 6 and 12 to 18 age groups, and also brings training in child psychology and RIE. As CAO, Karuna guides the academic vision, curriculum approach, and learning philosophy across the preschool.'
+  },
+  {
+    name: 'Kavitha Y',
+    designation: 'Centre Head',
+    img: 'assets/11-Kavitha.png',
+    bio: 'Kavitha is an early childhood education professional with over 5 years of experience across leading preschool environments, including KLAY and Vivero. She brings strong experience in administration, teacher guidance, curriculum support, and parent engagement. With her calm leadership style and child-first approach, Kavitha works closely with teachers and families to create a warm, well-run centre where children can grow with confidence, curiosity, and joy.'
+  },
+  {
+    name: 'Zaheerunnisa A',
+    designation: 'Teacher',
+    img: 'assets/13-Zaheerunnisa.png',
+    bio: 'Zaheerunnisa is an early childhood educator with over 6 years of experience working with young children across preschool and nursery settings. She holds a BA degree and has completed her Montessori Teachers Training. Before joining S.O.N.G., she worked as a facilitator at Little Millennium Preschool and at St. Paul Nursery School. Her experience helps her create a structured, caring, and engaging classroom where children feel supported and ready to learn.'
+  },
+  {
+    name: 'Vijji',
+    designation: 'Support Staff',
+    img: 'assets/14-Vijji.png',
+    bio: 'Vijji brings prior experience working in a preschool and daycare environment, where she has supported young children through their daily routines. At S.O.N.G., she helps create a clean, safe, and caring space for children throughout the day. Her warm presence and attentiveness make her a trusted support for both children and teachers, ensuring children feel comfortable, cared for, and secure.'
+  },
+  {
+    name: 'Raghu B',
+    designation: 'Strategic Advisor & Chairman',
+    img: 'assets/15-Raghu.png',
+    bio: 'Raghu brings a strong cross-sector background spanning healthcare, investment banking, health-tech entrepreneurship, and startup advisory. As Strategic Advisor and Chairman at S.O.N.G., he provides guidance on long-term vision, governance, growth, and institutional partnerships. His experience as a founder and advisor gives him a practical understanding of building organisations from the ground up, while his healthcare background brings a deep appreciation for care, trust, and child wellbeing.'
+  },
+  {
+    name: 'Varun B',
+    designation: 'COO',
+    img: 'assets/16-Varun.png',
+    bio: 'Varun supports S.O.N.G. on centre setup, operations, marketing, and growth, bringing a hands-on approach to building from the ground up. His background spans healthcare entrepreneurship, fintech founding teams, venture building, and strategic advisory for early-stage startups. He has previously advised education groups on innovation ecosystems and has founded two ed-tech initiatives, working closely with teams to turn plans into action.'
+  }
 ];
 
 let teamIndex = 0;
