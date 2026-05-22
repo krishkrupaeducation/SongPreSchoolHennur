@@ -1822,6 +1822,7 @@ h3 {
   .offer-content h3 { margin-bottom: 12px; align-self: auto; }
   .offer-time { align-self: auto; padding-top: 0; }
   .env-shell { grid-template-columns: 1fr; }
+  .env-side-panel { order: -1; }
   .env-thumbs { grid-template-columns: repeat(4, 1fr); }
   .team-card { grid-template-columns: 1fr; }
   .team-main-photo { min-height: 260px; height: 260px; }
