@@ -65,12 +65,7 @@ const teamItems = [
     img: 'assets/10-Karuna.png',
     bio: 'Karuna brings over 15 years of experience in education, with deep expertise in early childhood learning, Montessori practice, and child development. She is AMI-trained for both the 3 to 6 and 12 to 18 age groups, and also brings training in child psychology and RIE. As CAO, Karuna guides the academic vision, curriculum approach, and learning philosophy across the preschool.'
   },
-  {
-    name: 'Kavitha Y',
-    designation: 'Centre Head',
-    img: 'assets/11-Kavitha.png',
-    bio: 'Kavitha is an early childhood education professional with over 5 years of experience across leading preschool environments, including KLAY and Vivero. She brings strong experience in administration, teacher guidance, curriculum support, and parent engagement. With her calm leadership style and child-first approach, Kavitha works closely with teachers and families to create a warm, well-run centre where children can grow with confidence, curiosity, and joy.'
-  },
+
   {
     name: 'Zaheerunnisa A',
     designation: 'Teacher',
