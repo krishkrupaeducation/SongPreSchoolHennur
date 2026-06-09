@@ -33,6 +33,15 @@
   <meta property="og:image" content="https://songschoolblr.com/assets/logo.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18223381052"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-18223381052');
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -723,11 +732,18 @@
         submitBtn.textContent = 'Submitting...';
 
         try {
-          await fetch(SCRIPT_URL, { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: params.toString() });
+          await fetch(SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: params.toString()
+          });
+          // no-cors means we can't read the response — but if fetch didn't throw, the request was sent
           formStatus.textContent = 'Thank you! Our team will reach out shortly to confirm your visit.';
           formStatus.className = 'form-status success';
           form.reset();
           if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+          if (typeof gtag !== 'undefined') gtag('event', 'conversion', { 'send_to': 'AW-18223381052/bMoxCInryrscELz0yvFD' });
         } catch (error) {
           formStatus.textContent = 'Something went wrong. Please try again or WhatsApp us at 81056 57664.';
           formStatus.className = 'form-status error';
