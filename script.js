@@ -73,6 +73,12 @@ const teamItems = [
     bio: 'Zaheerunnisa is an early childhood educator with over 6 years of experience working with young children across preschool and nursery settings. She holds a BA degree and has completed her Montessori Teachers Training. Before joining S.O.N.G., she worked as a facilitator at Little Millennium Preschool and at St. Paul Nursery School. Her experience helps her create a structured, caring, and engaging classroom where children feel supported and ready to learn.'
   },
   {
+    name: 'Amreen',
+    designation: 'Teacher',
+    img: 'assets/11-Amreen.png',
+    bio: 'Amreen is a passionate pre-primary educator with over 6 years of experience working with young children across preschool and school environments. She has previously worked with El Santos Preschool and Chrysalis High, Horamavu, bringing strong classroom experience and a child-centered approach to early learning. She holds a BCA and a B.Ed. in History and English, combining academic strength with practical teaching experience. At S.O.N.G, Amreen is dedicated to creating a safe, nurturing, and engaging classroom.'
+  },
+  {
     name: 'Vijji',
     designation: 'Support Staff',
     img: 'assets/14-Vijji.png',
