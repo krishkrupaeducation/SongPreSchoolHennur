@@ -191,6 +191,7 @@ if (form) {
       formStatus.className = 'form-status success';
       form.reset();
       if (typeof fbq !== 'undefined') fbq('track', 'Lead');
+      if (typeof gtag !== 'undefined') gtag('event', 'conversion', {'send_to': 'AW-18223381052/bMoxCInryrscELz0yvFD'});
     } catch (error) {
       formStatus.textContent = 'Something went wrong. Please try again or contact us on WhatsApp.';
       formStatus.className = 'form-status error';
