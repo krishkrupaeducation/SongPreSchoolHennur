@@ -1011,9 +1011,6 @@
     const payload = {
       // Program
       program:          prog,
-      batch_no:         getVal('batch_no'),
-      timing_from:      getVal('timing_from'),
-      timing_to:        getVal('timing_to'),
 
       // Student
       student_first:    firstName,
@@ -1078,33 +1075,8 @@
       emg_name:         getVal('emg_name'),
       emg_phone:        getVal('emg_phone'),
 
-      // Siblings (stored as JSON array)
+      // Siblings
       siblings:         collectSiblings(),
-
-      // Documents
-      doc_birth_cert:   getCheckbox('doc_birth_cert'),
-      doc_student_aadhar: getCheckbox('doc_student_aadhar'),
-      doc_immun:        getCheckbox('doc_immun'),
-      doc_mom_aadhar:   getCheckbox('doc_mom_aadhar'),
-      doc_dad_aadhar:   getCheckbox('doc_dad_aadhar'),
-      doc_addr_proof:   getCheckbox('doc_addr_proof'),
-      doc_corp_id:      getCheckbox('doc_corp_id'),
-      doc_corp_id_detail: getVal('doc_corp_id_detail'),
-
-      // Doctor & Allergies
-      doctor_name:      getVal('doc_name'),
-      doctor_mobile:    getVal('doc_mobile'),
-      doctor_clinic:    getVal('doc_clinic'),
-      doctor_email:     getVal('doc_email'),
-      allergies:        getVal('allergies'),
-
-      // Fees
-      fee_academics:    parseFloat(getVal('fee_academics')) || null,
-      fee_admissions:   parseFloat(getVal('fee_admissions')) || null,
-      fee_annual:       parseFloat(getVal('fee_annual')) || null,
-      fee_kit:          parseFloat(getVal('fee_kit')) || null,
-      payment_mode:     getChecked('payment_mode'),
-      comments:         getVal('comments'),
 
       // Meta
       submitted_at:     new Date().toISOString(),
@@ -1121,14 +1093,14 @@
           params.append(k, typeof v === 'object' ? JSON.stringify(v) : String(v));
         }
       });
-      fetch(APPS_SCRIPT_URL, {
+      await fetch(APPS_SCRIPT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: params.toString()
-      }); // fire and forget — same pattern as your enquiry form
+      });
 
-      // 2. Also save to Supabase
-      const res = await fetch(SUPABASE_URL + '/rest/v1/student_registrations', {
+      // 2. Also try to save to Supabase (non-blocking)
+      fetch(SUPABASE_URL + '/rest/v1/student_registrations', {
         method: 'POST',
         headers: {
           'Content-Type':  'application/json',
@@ -1137,12 +1109,7 @@
           'Prefer':        'return=minimal'
         },
         body: JSON.stringify(payload)
-      });
-
-      if (!res.ok) {
-        const err = await res.text();
-        throw new Error(err);
-      }
+      }).catch(e => console.warn('Supabase save failed (non-critical):', e));
 
       goTo('success');
 
