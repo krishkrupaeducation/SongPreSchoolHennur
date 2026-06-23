@@ -444,6 +444,16 @@
       .step-label { display: none; }
     }
 
+    /* ── Section heading ── */
+    .section-heading {
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--charcoal);
+      text-transform: uppercase;
+      letter-spacing: .6px;
+      margin-bottom: 14px;
+    }
+
     /* ── Utility ── */
     .mt-4 { margin-top: 16px; }
     .text-small { font-size: 12px; color: var(--mid); }
@@ -562,6 +572,7 @@
       </div>
 
       <hr class="divider" />
+      <p class="section-heading">Address</p>
       <div class="grid-3 mt-4">
         <div class="field">
           <label>House Number</label>
@@ -663,7 +674,7 @@
       </div>
 
       <hr class="divider" />
-      <p class="text-small" style="margin-bottom:12px;">Employment Details</p>
+      <p class="section-heading">Employment Details</p>
       <div class="grid-2">
         <div class="field">
           <label>Qualification</label>
@@ -760,7 +771,7 @@
       </div>
 
       <hr class="divider" />
-      <p class="text-small" style="margin-bottom:12px;">Employment Details</p>
+      <p class="section-heading">Employment Details</p>
       <div class="grid-2">
         <div class="field">
           <label>Qualification</label>
@@ -822,7 +833,7 @@
   <div class="panel" id="panel-3">
     <div class="panel-header">
       <h2>Additional Information</h2>
-      <p>Siblings and health / allergy details.</p>
+      <p>Add sibling information if applicable.</p>
     </div>
 
     <!-- Siblings -->
@@ -1094,12 +1105,6 @@
       fee_kit:          parseFloat(getVal('fee_kit')) || null,
       payment_mode:     getChecked('payment_mode'),
       comments:         getVal('comments'),
-
-      // Declaration
-      decl_date:        declDate || null,
-      decl_place:       getVal('decl_place'),
-      sig_mother:       getVal('sig_mother'),
-      sig_father:       getVal('sig_father'),
 
       // Meta
       submitted_at:     new Date().toISOString(),
