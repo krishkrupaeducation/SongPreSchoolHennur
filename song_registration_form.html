@@ -958,10 +958,6 @@
     document.getElementById('total-display').textContent = '₹ ' + total.toLocaleString('en-IN');
   }
 
-  // ── Supabase config ──
-  const SUPABASE_URL = 'https://fvnuvutadshagmlnbqfc.supabase.co';
-  const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZ2bnV2dXRhZHNoYWdtbG5icWZjIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Nzk3NTUzMTIsImV4cCI6MjA5NTMzMTMxMn0.NJWzKisbbBqEnZoIgLikOAebdEATSH7Tilr4ZVWmWkM';
-
   function getVal(name) {
     const el = document.querySelector('[name="' + name + '"]');
     return el ? el.value.trim() : '';
@@ -1082,8 +1078,8 @@
       branch:           'Hennur'
     };
 
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzMllwO9wDOQ3UP7FeqbNi-M3wGI0gDFSNrvEPlUCDzEKMM8zUt74Wf942cJZE_mWqvog/exec';
-    
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzz80lJAFjZTbT8EMoZEO2LWZN0y21DMe25jKc_-vNOXnPOAgMu2XWlZ7Uqd-UyxW-WXg/exec';
+
     try {
       // 1. Send to Google Apps Script → email + Google Sheet
       const params = new URLSearchParams();
@@ -1098,17 +1094,7 @@
         body: params.toString()
       });
 
-      // 2. Also try to save to Supabase (non-blocking)
-      fetch(SUPABASE_URL + '/rest/v1/student_registrations', {
-        method: 'POST',
-        headers: {
-          'Content-Type':  'application/json',
-          'apikey':        SUPABASE_KEY,
-          'Authorization': 'Bearer ' + SUPABASE_KEY,
-          'Prefer':        'return=minimal'
-        },
-        body: JSON.stringify(payload)
-      }).catch(e => console.warn('Supabase save failed (non-critical):', e));
+
 
       goTo('success');
 
