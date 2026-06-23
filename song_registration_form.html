@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Registration Form – SONG Preschool Hennur</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Lato:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --pink:       #E0176C;
+      --pink-light: #FDE8F2;
+      --pink-mid:   #F9C6DE;
+      --teal:       #1A7A8A;
+      --teal-light: #E6F5F7;
+      --charcoal:   #2C2C3A;
+      --mid:        #6B6B7B;
+      --border:     #D8D8E2;
+      --bg:         #F7F8FC;
+      --white:      #FFFFFF;
+      --error:      #D93025;
+      --success:    #1A7A8A;
+      --radius:     10px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: var(--bg);
+      color: var(--charcoal);
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    /* ── Header ── */
+    .header {
+      background: var(--white);
+      border-bottom: 3px solid var(--pink);
+      padding: 18px 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,.07);
+    }
+    .header-logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .logo-mark {
+      width: 52px; height: 52px;
+      background: var(--pink);
+      border-radius: 12px;
+      display: grid; place-items: center;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800; font-size: 20px;
+      color: var(--white);
+      letter-spacing: -1px;
+      flex-shrink: 0;
+    }
+    .header-text h1 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800; font-size: 18px;
+      color: var(--charcoal);
+      line-height: 1.2;
+    }
+    .header-text p {
+      font-size: 12px; color: var(--mid);
+    }
+    .branch-badge {
+      margin-left: auto;
+      background: var(--pink);
+      color: var(--white);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700; font-size: 11px;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 20px;
+    }
+
+    /* ── Progress Bar ── */
+    .progress-wrap {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 32px;
+    }
+    .progress-steps {
+      display: flex;
+      gap: 0;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .step {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      cursor: pointer;
+    }
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 14px; left: 50%;
+      width: 100%; height: 2px;
+      background: var(--border);
+      z-index: 0;
+      transition: background .3s;
+    }
+    .step.completed:not(:last-child)::after { background: var(--pink); }
+    .step-num {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--white);
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800; font-size: 12px;
+      display: grid; place-items: center;
+      color: var(--mid);
+      position: relative; z-index: 1;
+      transition: all .3s;
+    }
+    .step.active .step-num  { border-color: var(--pink); background: var(--pink); color: var(--white); }
+    .step.completed .step-num { border-color: var(--pink); background: var(--pink); color: var(--white); }
+    .step-label {
+      font-size: 10px; font-weight: 700;
+      color: var(--mid); margin-top: 4px;
+      text-align: center; text-transform: uppercase;
+      letter-spacing: .5px;
+      transition: color .3s;
+    }
+    .step.active .step-label  { color: var(--pink); }
+    .step.completed .step-label { color: var(--pink); }
+
+    /* ── Main Container ── */
+    .container {
+      max-width: 820px;
+      margin: 32px auto 60px;
+      padding: 0 20px;
+    }
+
+    /* ── Panels ── */
+    .panel {
+      display: none;
+      animation: fadeIn .3s ease;
+    }
+    .panel.active { display: block; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
+
+    .panel-header {
+      margin-bottom: 28px;
+    }
+    .panel-header h2 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800; font-size: 24px;
+      color: var(--charcoal);
+    }
+    .panel-header p {
+      color: var(--mid); font-size: 14px; margin-top: 4px;
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 28px 20px;
+      margin-bottom: 20px;
+    }
+    .card-title {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800; font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--pink);
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--pink-mid);
+    }
+
+    /* ── Photo Upload ── */
+    .photo-row {
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+    .photo-boxes {
+      display: flex; gap: 16px;
+    }
+    .photo-box {
+      display: flex; flex-direction: column; align-items: center; gap: 8px;
+    }
+    .photo-upload {
+      width: 100px; height: 120px;
+      border: 2px dashed var(--border);
+      border-radius: 8px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      cursor: pointer; gap: 6px;
+      background: var(--bg);
+      transition: border-color .2s, background .2s;
+      position: relative; overflow: hidden;
+    }
+    .photo-upload:hover { border-color: var(--pink); background: var(--pink-light); }
+    .photo-upload input[type=file] {
+      position: absolute; inset: 0; opacity: 0; cursor: pointer;
+    }
+    .photo-upload svg { opacity: .4; }
+    .photo-upload span { font-size: 10px; color: var(--mid); text-align: center; padding: 0 4px; }
+    .photo-label { font-size: 11px; font-weight: 700; color: var(--mid); text-align: center; }
+    .photo-preview {
+      width: 100%; height: 100%; object-fit: cover;
+      position: absolute; top: 0; left: 0;
+      display: none;
+    }
+
+    /* ── Form Grid ── */
+    .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .grid-1 { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    .col-span-2 { grid-column: span 2; }
+    .col-span-3 { grid-column: span 3; }
+
+    /* ── Fields ── */
+    .field { display: flex; flex-direction: column; gap: 5px; }
+    .field label {
+      font-size: 12px; font-weight: 700;
+      color: var(--mid); text-transform: uppercase;
+      letter-spacing: .5px;
+    }
+    .field label .req { color: var(--pink); margin-left: 2px; }
+    .field input, .field select, .field textarea {
+      border: 1.5px solid var(--border);
+      border-radius: 7px;
+      padding: 10px 12px;
+      font-family: 'Lato', sans-serif;
+      font-size: 14px;
+      color: var(--charcoal);
+      background: var(--white);
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+    }
+    .field input:focus, .field select:focus, .field textarea:focus {
+      border-color: var(--pink);
+      box-shadow: 0 0 0 3px var(--pink-light);
+    }
+    .field input.error { border-color: var(--error); }
+    .field textarea { resize: vertical; min-height: 80px; }
+    .field .hint { font-size: 11px; color: var(--mid); }
+
+    /* ── Radio / Checkbox groups ── */
+    .radio-group, .check-group {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 2px;
+    }
+    .radio-group label, .check-group label {
+      display: flex; align-items: center; gap: 7px;
+      font-size: 14px; font-weight: 400;
+      color: var(--charcoal);
+      text-transform: none; letter-spacing: 0;
+      cursor: pointer;
+      padding: 8px 14px;
+      border: 1.5px solid var(--border);
+      border-radius: 7px;
+      transition: all .2s;
+      user-select: none;
+    }
+    .radio-group label:hover, .check-group label:hover {
+      border-color: var(--pink); background: var(--pink-light);
+    }
+    .radio-group input[type=radio],
+    .check-group input[type=checkbox] {
+      accent-color: var(--pink);
+      width: 16px; height: 16px;
+      cursor: pointer;
+    }
+    .radio-group label:has(input:checked),
+    .check-group label:has(input:checked) {
+      border-color: var(--pink); background: var(--pink-light);
+      font-weight: 700;
+    }
+
+    /* ── Program selector ── */
+    .program-grid {
+      display: flex; flex-wrap: wrap; gap: 10px;
+    }
+    .prog-opt {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+      padding: 12px 20px;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all .2s;
+      font-weight: 700; font-size: 13px; color: var(--mid);
+    }
+    .prog-opt input { display: none; }
+    .prog-opt span { font-size: 11px; font-weight: 400; color: var(--mid); }
+    .prog-opt:has(input:checked) {
+      border-color: var(--pink); background: var(--pink-light);
+      color: var(--pink);
+    }
+    .prog-opt:hover { border-color: var(--pink); background: var(--pink-light); }
+
+    /* ── Siblings table ── */
+    .sibling-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    .sibling-table th {
+      background: var(--bg); border: 1px solid var(--border);
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .5px; color: var(--mid);
+      padding: 8px 10px; text-align: left;
+    }
+    .sibling-table td { border: 1px solid var(--border); padding: 0; }
+    .sibling-table td input, .sibling-table td select {
+      border: none; padding: 9px 10px; width: 100%;
+      font-size: 13px; background: transparent; outline: none;
+    }
+    .add-sibling {
+      margin-top: 10px;
+      background: none; border: 1.5px dashed var(--border);
+      border-radius: 7px; padding: 8px 16px;
+      font-size: 13px; color: var(--mid); cursor: pointer;
+      font-family: 'Lato', sans-serif;
+      transition: all .2s;
+    }
+    .add-sibling:hover { border-color: var(--pink); color: var(--pink); background: var(--pink-light); }
+
+    /* ── Documents checklist ── */
+    .doc-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .doc-list li {
+      display: flex; align-items: center; gap: 12px;
+      padding: 12px 14px; border: 1.5px solid var(--border);
+      border-radius: 8px; font-size: 14px;
+      transition: all .2s;
+    }
+    .doc-list li:has(input:checked) {
+      border-color: var(--teal); background: var(--teal-light);
+    }
+    .doc-list input[type=checkbox] {
+      accent-color: var(--teal);
+      width: 18px; height: 18px; flex-shrink: 0; cursor: pointer;
+    }
+
+    /* ── Fees table ── */
+    .fees-table { width: 100%; border-collapse: collapse; margin-top: 4px; }
+    .fees-table th {
+      background: var(--pink); color: var(--white);
+      font-weight: 700; font-size: 13px;
+      padding: 10px 14px; text-align: left;
+    }
+    .fees-table td {
+      border-bottom: 1px solid var(--border);
+      padding: 10px 14px; font-size: 14px;
+    }
+    .fees-table td input {
+      border: 1.5px solid var(--border); border-radius: 6px;
+      padding: 6px 10px; font-size: 14px; width: 140px;
+      font-family: 'Lato', sans-serif; outline: none;
+      text-align: right;
+    }
+    .fees-table td input:focus { border-color: var(--pink); }
+    .fees-table .total-row td { font-weight: 700; background: var(--bg); }
+    #total-display { font-weight: 700; color: var(--pink); font-size: 16px; }
+
+    /* ── Declaration ── */
+    .declaration-box {
+      background: var(--teal-light);
+      border: 1px solid var(--teal);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      font-size: 14px; line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .declaration-box p { color: var(--charcoal); }
+
+    /* ── Navigation ── */
+    .nav-row {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 28px;
+    }
+    .btn {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800; font-size: 15px;
+      padding: 12px 28px; border-radius: 8px;
+      cursor: pointer; border: none;
+      transition: all .2s;
+    }
+    .btn-primary {
+      background: var(--pink); color: var(--white);
+    }
+    .btn-primary:hover { background: #c01260; transform: translateY(-1px); box-shadow: 0 4px 14px rgba(224,23,108,.3); }
+    .btn-secondary {
+      background: var(--white); color: var(--mid);
+      border: 1.5px solid var(--border);
+    }
+    .btn-secondary:hover { border-color: var(--mid); color: var(--charcoal); }
+    .btn-success {
+      background: var(--teal); color: var(--white);
+    }
+    .btn-success:hover { background: #155f6e; }
+
+    /* ── Success screen ── */
+    .success-screen {
+      text-align: center; padding: 60px 20px;
+    }
+    .success-icon {
+      width: 80px; height: 80px;
+      background: var(--teal-light);
+      border: 3px solid var(--teal);
+      border-radius: 50%;
+      display: inline-grid; place-items: center;
+      margin-bottom: 24px;
+    }
+    .success-screen h2 {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800; font-size: 28px;
+      color: var(--charcoal); margin-bottom: 10px;
+    }
+    .success-screen p { color: var(--mid); max-width: 420px; margin: 0 auto 24px; }
+
+    /* ── Same-as-above toggle ── */
+    .same-above {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 13px; color: var(--mid);
+      margin-bottom: 16px; cursor: pointer;
+    }
+    .same-above input { accent-color: var(--pink); cursor: pointer; }
+
+    /* ── Responsive ── */
+    @media (max-width: 640px) {
+      .header { padding: 14px 16px; }
+      .progress-wrap { padding: 12px 16px; }
+      .container { padding: 0 12px; }
+      .card { padding: 20px 16px; }
+      .grid-3 { grid-template-columns: 1fr; }
+      .grid-2 { grid-template-columns: 1fr; }
+      .col-span-2 { grid-column: span 1; }
+      .col-span-3 { grid-column: span 1; }
+      .photo-row { flex-direction: column; }
+      .branch-badge { display: none; }
+      .step-label { display: none; }
+    }
+
+    /* ── Utility ── */
+    .mt-4 { margin-top: 16px; }
+    .text-small { font-size: 12px; color: var(--mid); }
+    .divider { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+  </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="header-logo">
+    <img src="assets/logo.png" alt="SONG Preschool & Daycare" style="height:52px;width:auto;" />
+    <div class="header-text">
+      <h1>SONG Preschool &amp; Daycare</h1>
+      <p>Student Registration Form</p>
+    </div>
+  </div>
+  <span class="branch-badge">Hennur Branch</span>
+</header>
+
+<!-- Progress -->
+<div class="progress-wrap">
+  <div class="progress-steps">
+    <div class="step active" data-step="1">
+      <div class="step-num">1</div>
+      <div class="step-label">Student</div>
+    </div>
+    <div class="step" data-step="2">
+      <div class="step-num">2</div>
+      <div class="step-label">Parents</div>
+    </div>
+    <div class="step" data-step="3">
+      <div class="step-num">3</div>
+      <div class="step-label">Submit</div>
+    </div>
+  </div>
+</div>
+
+<!-- Main -->
+<main class="container">
+
+  <!-- ════════ PANEL 1: Student Details ════════ -->
+  <div class="panel active" id="panel-1">
+    <div class="panel-header">
+      <h2>Student Details</h2>
+      <p>Tell us about the child being enrolled.</p>
+    </div>
+
+    <!-- Program -->
+    <div class="card">
+      <div class="card-title">Program &amp; Schedule</div>
+      <div class="field">
+        <label>Program <span class="req">*</span></label>
+        <div class="program-grid">
+          <label class="prog-opt"><input type="radio" name="program" value="Toddler" required> Toddler <span>18–24 mo</span></label>
+          <label class="prog-opt"><input type="radio" name="program" value="Play Group"> Play Group <span>2–3 yrs</span></label>
+          <label class="prog-opt"><input type="radio" name="program" value="Nursery"> Nursery <span>3–4 yrs</span></label>
+          <label class="prog-opt"><input type="radio" name="program" value="Jr. KG"> Jr. KG <span>4–5 yrs</span></label>
+          <label class="prog-opt"><input type="radio" name="program" value="Sr. KG"> Sr. KG <span>5–6 yrs</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Child Info -->
+    <div class="card">
+      <div class="card-title">Child Information</div>
+      <div class="grid-3">
+        <div class="field">
+          <label>First Name <span class="req">*</span></label>
+          <input type="text" name="student_first" required placeholder="First name" />
+        </div>
+        <div class="field">
+          <label>Middle Name</label>
+          <input type="text" name="student_middle" placeholder="Middle name" />
+        </div>
+        <div class="field">
+          <label>Last / Surname <span class="req">*</span></label>
+          <input type="text" name="student_last" required placeholder="Surname" />
+        </div>
+      </div>
+
+      <div class="grid-2 mt-4">
+        <div class="field">
+          <label>Gender <span class="req">*</span></label>
+          <div class="radio-group">
+            <label><input type="radio" name="gender" value="Male" required /> Male</label>
+            <label><input type="radio" name="gender" value="Female" /> Female</label>
+          </div>
+        </div>
+        <div class="field">
+          <label>Date of Birth <span class="req">*</span></label>
+          <input type="date" name="dob" required />
+        </div>
+        <div class="field">
+          <label>Place of Birth</label>
+          <input type="text" name="place_of_birth" placeholder="City, State, Country" />
+        </div>
+        <div class="field">
+          <label>Blood Group</label>
+          <select name="blood_group">
+            <option value="">Select…</option>
+            <option>A+</option><option>A−</option>
+            <option>B+</option><option>B−</option>
+            <option>AB+</option><option>AB−</option>
+            <option>O+</option><option>O−</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Height (cm)</label>
+          <input type="number" name="height" placeholder="e.g. 95" min="30" max="200" />
+        </div>
+        <div class="field">
+          <label>Weight (kg)</label>
+          <input type="number" name="weight" placeholder="e.g. 14" min="1" max="200" step="0.1" />
+        </div>
+      </div>
+
+      <hr class="divider" />
+      <div class="grid-3 mt-4">
+        <div class="field">
+          <label>House Number</label>
+          <input type="text" name="addr_house" placeholder="No. / Flat" />
+        </div>
+        <div class="field">
+          <label>Street Name</label>
+          <input type="text" name="addr_street" placeholder="Street" />
+        </div>
+        <div class="field">
+          <label>Area / Locality</label>
+          <input type="text" name="addr_area" placeholder="Area" />
+        </div>
+        <div class="field">
+          <label>Landmark</label>
+          <input type="text" name="addr_landmark" placeholder="Nearby landmark" />
+        </div>
+        <div class="field col-span-2">
+          <label>City, State &amp; Pin Code</label>
+          <input type="text" name="addr_city" placeholder="e.g. Bangalore, Karnataka – 560043" />
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <span></span>
+      <button class="btn btn-primary" onclick="goTo(2)">Next: Parent Details →</button>
+    </div>
+  </div>
+
+  <!-- ════════ PANEL 2: Parent Details ════════ -->
+  <div class="panel" id="panel-2">
+    <div class="panel-header">
+      <h2>Parent Details</h2>
+      <p>Contact and employment information for both parents.</p>
+    </div>
+
+    <!-- Mother -->
+    <div class="card">
+      <div class="card-title">Mother</div>
+      <div class="grid-3">
+        <div class="field">
+          <label>First Name <span class="req">*</span></label>
+          <input type="text" name="mom_first" placeholder="First name" />
+        </div>
+        <div class="field">
+          <label>Middle Name</label>
+          <input type="text" name="mom_middle" placeholder="Middle name" />
+        </div>
+        <div class="field">
+          <label>Last / Surname</label>
+          <input type="text" name="mom_last" placeholder="Surname" />
+        </div>
+      </div>
+
+      <hr class="divider" />
+      <label class="same-above">
+        <input type="checkbox" id="mom-same" onchange="toggleSame('mom')" />
+        Same address as student
+      </label>
+      <div id="mom-addr">
+        <div class="grid-3">
+          <div class="field">
+            <label>House Number</label>
+            <input type="text" name="mom_addr_house" placeholder="No. / Flat" />
+          </div>
+          <div class="field">
+            <label>Street Name</label>
+            <input type="text" name="mom_addr_street" placeholder="Street" />
+          </div>
+          <div class="field">
+            <label>Area</label>
+            <input type="text" name="mom_addr_area" placeholder="Area" />
+          </div>
+          <div class="field">
+            <label>Landmark</label>
+            <input type="text" name="mom_addr_landmark" placeholder="Landmark" />
+          </div>
+          <div class="field">
+            <label>City, State</label>
+            <input type="text" name="mom_addr_city" placeholder="City, State" />
+          </div>
+          <div class="field">
+            <label>Pin Code</label>
+            <input type="text" name="mom_addr_pin" placeholder="Pin Code" maxlength="6" />
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2 mt-4">
+        <div class="field">
+          <label>Mobile Number <span class="req">*</span></label>
+          <input type="tel" name="mom_mobile" placeholder="+91 98765 43210" />
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" name="mom_email" placeholder="email@example.com" />
+        </div>
+      </div>
+
+      <hr class="divider" />
+      <p class="text-small" style="margin-bottom:12px;">Employment Details</p>
+      <div class="grid-2">
+        <div class="field">
+          <label>Qualification</label>
+          <input type="text" name="mom_qual" placeholder="Highest qualification" />
+        </div>
+        <div class="field">
+          <label>Occupation</label>
+          <input type="text" name="mom_occ" placeholder="Job title / Role" />
+        </div>
+        <div class="field">
+          <label>Company Name</label>
+          <input type="text" name="mom_company" placeholder="Employer name" />
+        </div>
+        <div class="field">
+          <label>Designation</label>
+          <input type="text" name="mom_desig" placeholder="Designation" />
+        </div>
+        <div class="field col-span-2">
+          <label>Company Address</label>
+          <input type="text" name="mom_company_addr" placeholder="Full company address" />
+        </div>
+        <div class="field">
+          <label>Work Contact No.</label>
+          <input type="tel" name="mom_work_phone" placeholder="Work number" />
+        </div>
+        <div class="field">
+          <label>Work Email</label>
+          <input type="email" name="mom_work_email" placeholder="Work email" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Father -->
+    <div class="card">
+      <div class="card-title">Father</div>
+      <div class="grid-3">
+        <div class="field">
+          <label>First Name <span class="req">*</span></label>
+          <input type="text" name="dad_first" placeholder="First name" />
+        </div>
+        <div class="field">
+          <label>Middle Name</label>
+          <input type="text" name="dad_middle" placeholder="Middle name" />
+        </div>
+        <div class="field">
+          <label>Last / Surname</label>
+          <input type="text" name="dad_last" placeholder="Surname" />
+        </div>
+      </div>
+
+      <hr class="divider" />
+      <label class="same-above">
+        <input type="checkbox" id="dad-same" onchange="toggleSame('dad')" />
+        Same address as student
+      </label>
+      <div id="dad-addr">
+        <div class="grid-3">
+          <div class="field">
+            <label>House Number</label>
+            <input type="text" name="dad_addr_house" placeholder="No. / Flat" />
+          </div>
+          <div class="field">
+            <label>Street Name</label>
+            <input type="text" name="dad_addr_street" placeholder="Street" />
+          </div>
+          <div class="field">
+            <label>Area</label>
+            <input type="text" name="dad_addr_area" placeholder="Area" />
+          </div>
+          <div class="field">
+            <label>Landmark</label>
+            <input type="text" name="dad_addr_landmark" placeholder="Landmark" />
+          </div>
+          <div class="field">
+            <label>City, State</label>
+            <input type="text" name="dad_addr_city" placeholder="City, State" />
+          </div>
+          <div class="field">
+            <label>Pin Code</label>
+            <input type="text" name="dad_addr_pin" placeholder="Pin Code" maxlength="6" />
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-2 mt-4">
+        <div class="field">
+          <label>Mobile Number <span class="req">*</span></label>
+          <input type="tel" name="dad_mobile" placeholder="+91 98765 43210" />
+        </div>
+        <div class="field">
+          <label>Email</label>
+          <input type="email" name="dad_email" placeholder="email@example.com" />
+        </div>
+      </div>
+
+      <hr class="divider" />
+      <p class="text-small" style="margin-bottom:12px;">Employment Details</p>
+      <div class="grid-2">
+        <div class="field">
+          <label>Qualification</label>
+          <input type="text" name="dad_qual" placeholder="Highest qualification" />
+        </div>
+        <div class="field">
+          <label>Occupation</label>
+          <input type="text" name="dad_occ" placeholder="Job title / Role" />
+        </div>
+        <div class="field">
+          <label>Company Name</label>
+          <input type="text" name="dad_company" placeholder="Employer name" />
+        </div>
+        <div class="field">
+          <label>Designation</label>
+          <input type="text" name="dad_desig" placeholder="Designation" />
+        </div>
+        <div class="field col-span-2">
+          <label>Company Address</label>
+          <input type="text" name="dad_company_addr" placeholder="Full company address" />
+        </div>
+        <div class="field">
+          <label>Work Contact No.</label>
+          <input type="tel" name="dad_work_phone" placeholder="Work number" />
+        </div>
+        <div class="field">
+          <label>Work Email</label>
+          <input type="email" name="dad_work_email" placeholder="Work email" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Emergency -->
+    <div class="card">
+      <div class="card-title">Guardian / Emergency Contact</div>
+      <div class="grid-3">
+        <div class="field">
+          <label>Relation to Student</label>
+          <input type="text" name="emg_relation" placeholder="e.g. Grandparent, Uncle" />
+        </div>
+        <div class="field">
+          <label>Full Name</label>
+          <input type="text" name="emg_name" placeholder="Contact's name" />
+        </div>
+        <div class="field">
+          <label>Contact Number</label>
+          <input type="tel" name="emg_phone" placeholder="+91 …" />
+        </div>
+      </div>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn btn-secondary" onclick="goTo(1)">← Back</button>
+      <button class="btn btn-primary" onclick="goTo(3)">Next: Additional Info →</button>
+    </div>
+  </div>
+
+  <!-- ════════ PANEL 3: Siblings & Health ════════ -->
+  <div class="panel" id="panel-3">
+    <div class="panel-header">
+      <h2>Additional Information</h2>
+      <p>Siblings and health / allergy details.</p>
+    </div>
+
+    <!-- Siblings -->
+    <div class="card">
+      <div class="card-title">Siblings (if any)</div>
+      <table class="sibling-table" id="sibling-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>DOB</th>
+            <th>Current School</th>
+            <th>Grade</th>
+            <th>SONG Alum?</th>
+          </tr>
+        </thead>
+        <tbody id="sibling-rows">
+          <tr>
+            <td><input type="text" name="sib1_name" placeholder="Full name" /></td>
+            <td><select name="sib1_gender"><option value="">—</option><option>Male</option><option>Female</option></select></td>
+            <td><input type="date" name="sib1_dob" /></td>
+            <td><input type="text" name="sib1_school" placeholder="School name" /></td>
+            <td><input type="text" name="sib1_grade" placeholder="Grade" /></td>
+            <td><select name="sib1_alum"><option value="">—</option><option>Yes</option><option>No</option></select></td>
+          </tr>
+        </tbody>
+      </table>
+      <button class="add-sibling" type="button" onclick="addSibling()">+ Add another sibling</button>
+    </div>
+
+    <div class="nav-row">
+      <button class="btn btn-secondary" onclick="goTo(2)">← Back</button>
+      <button class="btn btn-success" onclick="submitForm()">Submit Registration ✓</button>
+    </div>
+  </div>
+
+  <!-- ════════ SUCCESS ════════ -->
+  <div class="panel" id="panel-success">
+    <div class="success-screen">
+      <div class="success-icon">
+        <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#1A7A8A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+      <h2>Registration Submitted!</h2>
+      <p>Thank you for registering with SONG Preschool, Hennur Branch. We'll review your details and be in touch soon.</p>
+      <p class="text-small">Questions? Call us at <strong>+91 8105657664</strong> or email <strong>hennur_blr@songpreschool.com</strong></p>
+      <br />
+      <button class="btn btn-primary" onclick="window.print()">🖨 Print a Copy</button>
+    </div>
+  </div>
+
+</main>
+
+<script>
+  let currentPanel = 1;
+
+  function goTo(n) {
+    document.getElementById('panel-' + currentPanel).classList.remove('active');
+    if (n === 'success') {
+      document.getElementById('panel-success').classList.add('active');
+    } else {
+      document.getElementById('panel-' + n).classList.add('active');
+    }
+
+    // Update progress steps
+    document.querySelectorAll('.step').forEach(s => {
+      const num = parseInt(s.dataset.step);
+      s.classList.remove('active', 'completed');
+      if (typeof n === 'number') {
+        if (num === n) s.classList.add('active');
+        if (num < n) s.classList.add('completed');
+      }
+    });
+
+    currentPanel = n;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function previewPhoto(input, previewId) {
+    const preview = document.getElementById(previewId);
+    if (input.files && input.files[0]) {
+      const reader = new FileReader();
+      reader.onload = e => {
+        preview.src = e.target.result;
+        preview.style.display = 'block';
+        preview.parentElement.querySelector('svg').style.display = 'none';
+        preview.parentElement.querySelector('span').style.display = 'none';
+      };
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  function toggleSame(parent) {
+    const cb = document.getElementById(parent + '-same');
+    const block = document.getElementById(parent + '-addr');
+    block.style.display = cb.checked ? 'none' : 'block';
+  }
+
+  let siblingCount = 1;
+  function addSibling() {
+    siblingCount++;
+    const tbody = document.getElementById('sibling-rows');
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td><input type="text" name="sib${siblingCount}_name" placeholder="Full name" /></td>
+      <td><select name="sib${siblingCount}_gender"><option value="">—</option><option>Male</option><option>Female</option></select></td>
+      <td><input type="date" name="sib${siblingCount}_dob" /></td>
+      <td><input type="text" name="sib${siblingCount}_school" placeholder="School name" /></td>
+      <td><input type="text" name="sib${siblingCount}_grade" placeholder="Grade" /></td>
+      <td><select name="sib${siblingCount}_alum"><option value="">—</option><option>Yes</option><option>No</option></select></td>
+    `;
+    tbody.appendChild(tr);
+  }
+
+  function calcTotal() {
+    const fields = ['fee_academics','fee_admissions','fee_annual','fee_kit'];
+    let total = 0;
+    fields.forEach(f => {
+      const v = parseFloat(document.querySelector('[name=' + f + ']').value) || 0;
+      total += v;
+    });
+    document.getElementById('total-display').textContent = '₹ ' + total.toLocaleString('en-IN');
+  }
+
+  // ── Supabase config ──
+  const SUPABASE_URL = 'https://fvnuvutadshagmlnbqfc.supabase.co';
+  const SUPABASE_KEY = 'sb_publishable_QGKvc6bnlFXByw-alvgAVA_0p0pD1s1';
+
+  function getVal(name) {
+    const el = document.querySelector('[name="' + name + '"]');
+    return el ? el.value.trim() : '';
+  }
+  function getChecked(name) {
+    const el = document.querySelector('[name="' + name + '"]:checked');
+    return el ? el.value : '';
+  }
+  function getCheckbox(name) {
+    const el = document.querySelector('[name="' + name + '"]');
+    return el ? el.checked : false;
+  }
+
+  function collectSiblings() {
+    const rows = document.querySelectorAll('#sibling-rows tr');
+    const siblings = [];
+    rows.forEach((row, i) => {
+      const n = i + 1;
+      const name = row.querySelector('[name="sib' + n + '_name"]')?.value.trim();
+      if (name) {
+        siblings.push({
+          name,
+          gender:  row.querySelector('[name="sib' + n + '_gender"]')?.value || '',
+          dob:     row.querySelector('[name="sib' + n + '_dob"]')?.value || '',
+          school:  row.querySelector('[name="sib' + n + '_school"]')?.value.trim() || '',
+          grade:   row.querySelector('[name="sib' + n + '_grade"]')?.value.trim() || '',
+          song_alum: row.querySelector('[name="sib' + n + '_alum"]')?.value || ''
+        });
+      }
+    });
+    return siblings;
+  }
+
+  async function submitForm() {
+    const prog      = getChecked('program');
+    const firstName = getVal('student_first');
+
+    if (!prog)      { alert('Please select a Program on step 1.'); goTo(1); return; }
+    if (!firstName) { alert('Please enter the student\'s first name on step 1.'); goTo(1); return; }
+
+    // Disable button & show loading
+    const btn = document.querySelector('.btn-success');
+    btn.disabled = true;
+    btn.textContent = 'Submitting…';
+
+    const payload = {
+      // Program
+      program:          prog,
+      batch_no:         getVal('batch_no'),
+      timing_from:      getVal('timing_from'),
+      timing_to:        getVal('timing_to'),
+
+      // Student
+      student_first:    firstName,
+      student_middle:   getVal('student_middle'),
+      student_last:     getVal('student_last'),
+      gender:           getChecked('gender'),
+      dob:              getVal('dob') || null,
+      place_of_birth:   getVal('place_of_birth'),
+      blood_group:      getVal('blood_group'),
+      height_cm:        parseFloat(getVal('height')) || null,
+      weight_kg:        parseFloat(getVal('weight')) || null,
+      addr_house:       getVal('addr_house'),
+      addr_street:      getVal('addr_street'),
+      addr_area:        getVal('addr_area'),
+      addr_landmark:    getVal('addr_landmark'),
+      addr_city:        getVal('addr_city'),
+
+      // Mother
+      mom_first:        getVal('mom_first'),
+      mom_middle:       getVal('mom_middle'),
+      mom_last:         getVal('mom_last'),
+      mom_addr_same:    getCheckbox('mom-same'),
+      mom_addr_house:   getVal('mom_addr_house'),
+      mom_addr_street:  getVal('mom_addr_street'),
+      mom_addr_area:    getVal('mom_addr_area'),
+      mom_addr_landmark:getVal('mom_addr_landmark'),
+      mom_addr_city:    getVal('mom_addr_city'),
+      mom_addr_pin:     getVal('mom_addr_pin'),
+      mom_mobile:       getVal('mom_mobile'),
+      mom_email:        getVal('mom_email'),
+      mom_qual:         getVal('mom_qual'),
+      mom_occ:          getVal('mom_occ'),
+      mom_company:      getVal('mom_company'),
+      mom_desig:        getVal('mom_desig'),
+      mom_company_addr: getVal('mom_company_addr'),
+      mom_work_phone:   getVal('mom_work_phone'),
+      mom_work_email:   getVal('mom_work_email'),
+
+      // Father
+      dad_first:        getVal('dad_first'),
+      dad_middle:       getVal('dad_middle'),
+      dad_last:         getVal('dad_last'),
+      dad_addr_same:    getCheckbox('dad-same'),
+      dad_addr_house:   getVal('dad_addr_house'),
+      dad_addr_street:  getVal('dad_addr_street'),
+      dad_addr_area:    getVal('dad_addr_area'),
+      dad_addr_landmark:getVal('dad_addr_landmark'),
+      dad_addr_city:    getVal('dad_addr_city'),
+      dad_addr_pin:     getVal('dad_addr_pin'),
+      dad_mobile:       getVal('dad_mobile'),
+      dad_email:        getVal('dad_email'),
+      dad_qual:         getVal('dad_qual'),
+      dad_occ:          getVal('dad_occ'),
+      dad_company:      getVal('dad_company'),
+      dad_desig:        getVal('dad_desig'),
+      dad_company_addr: getVal('dad_company_addr'),
+      dad_work_phone:   getVal('dad_work_phone'),
+      dad_work_email:   getVal('dad_work_email'),
+
+      // Emergency
+      emg_relation:     getVal('emg_relation'),
+      emg_name:         getVal('emg_name'),
+      emg_phone:        getVal('emg_phone'),
+
+      // Siblings (stored as JSON array)
+      siblings:         collectSiblings(),
+
+      // Documents
+      doc_birth_cert:   getCheckbox('doc_birth_cert'),
+      doc_student_aadhar: getCheckbox('doc_student_aadhar'),
+      doc_immun:        getCheckbox('doc_immun'),
+      doc_mom_aadhar:   getCheckbox('doc_mom_aadhar'),
+      doc_dad_aadhar:   getCheckbox('doc_dad_aadhar'),
+      doc_addr_proof:   getCheckbox('doc_addr_proof'),
+      doc_corp_id:      getCheckbox('doc_corp_id'),
+      doc_corp_id_detail: getVal('doc_corp_id_detail'),
+
+      // Doctor & Allergies
+      doctor_name:      getVal('doc_name'),
+      doctor_mobile:    getVal('doc_mobile'),
+      doctor_clinic:    getVal('doc_clinic'),
+      doctor_email:     getVal('doc_email'),
+      allergies:        getVal('allergies'),
+
+      // Fees
+      fee_academics:    parseFloat(getVal('fee_academics')) || null,
+      fee_admissions:   parseFloat(getVal('fee_admissions')) || null,
+      fee_annual:       parseFloat(getVal('fee_annual')) || null,
+      fee_kit:          parseFloat(getVal('fee_kit')) || null,
+      payment_mode:     getChecked('payment_mode'),
+      comments:         getVal('comments'),
+
+      // Declaration
+      decl_date:        declDate || null,
+      decl_place:       getVal('decl_place'),
+      sig_mother:       getVal('sig_mother'),
+      sig_father:       getVal('sig_father'),
+
+      // Meta
+      submitted_at:     new Date().toISOString(),
+      branch:           'Hennur'
+    };
+
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw6fdUk2Oztah1NoXI51wrBenUO2lePxS-aN9vpOc-bdvOMXw0NcjxqY9xxmWbCKw-lxQ/exec';
+
+    try {
+      // 1. Send to Google Apps Script → email + Google Sheet
+      const params = new URLSearchParams();
+      Object.entries(payload).forEach(([k, v]) => {
+        if (v !== null && v !== undefined) {
+          params.append(k, typeof v === 'object' ? JSON.stringify(v) : String(v));
+        }
+      });
+      fetch(APPS_SCRIPT_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString()
+      }); // fire and forget — same pattern as your enquiry form
+
+      // 2. Also save to Supabase
+      const res = await fetch(SUPABASE_URL + '/rest/v1/student_registrations', {
+        method: 'POST',
+        headers: {
+          'Content-Type':  'application/json',
+          'apikey':        SUPABASE_KEY,
+          'Authorization': 'Bearer ' + SUPABASE_KEY,
+          'Prefer':        'return=minimal'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!res.ok) {
+        const err = await res.text();
+        throw new Error(err);
+      }
+
+      goTo('success');
+
+    } catch (e) {
+      console.error('Submission error:', e);
+      alert('Something went wrong submitting the form. Please try again or call us on +91 8105657664.');
+      btn.disabled = false;
+      btn.textContent = 'Submit Registration ✓';
+    }
+  }
+
+  </script>
+</body>
+</html>
