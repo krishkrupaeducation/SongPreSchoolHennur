@@ -508,8 +508,7 @@
       <div class="field">
         <label>Program <span class="req">*</span></label>
         <div class="program-grid">
-          <label class="prog-opt"><input type="radio" name="program" value="Toddler" required> Toddler <span>18–24 mo</span></label>
-          <label class="prog-opt"><input type="radio" name="program" value="Play Group"> Play Group <span>2–3 yrs</span></label>
+          <label class="prog-opt"><input type="radio" name="program" value="Play Group" required> Play Group <span>2–3 yrs</span></label>
           <label class="prog-opt"><input type="radio" name="program" value="Nursery"> Nursery <span>3–4 yrs</span></label>
           <label class="prog-opt"><input type="radio" name="program" value="Jr. KG"> Jr. KG <span>4–5 yrs</span></label>
           <label class="prog-opt"><input type="radio" name="program" value="Sr. KG"> Sr. KG <span>5–6 yrs</span></label>
@@ -523,15 +522,15 @@
       <div class="grid-3">
         <div class="field">
           <label>First Name <span class="req">*</span></label>
-          <input type="text" name="student_first" required placeholder="First name" />
+          <input type="text" name="student_first" required />
         </div>
         <div class="field">
           <label>Middle Name</label>
-          <input type="text" name="student_middle" placeholder="Middle name" />
+          <input type="text" name="student_middle" />
         </div>
         <div class="field">
           <label>Last / Surname <span class="req">*</span></label>
-          <input type="text" name="student_last" required placeholder="Surname" />
+          <input type="text" name="student_last" required />
         </div>
       </div>
 
@@ -549,7 +548,7 @@
         </div>
         <div class="field">
           <label>Place of Birth</label>
-          <input type="text" name="place_of_birth" placeholder="City, State, Country" />
+          <input type="text" name="place_of_birth" />
         </div>
         <div class="field">
           <label>Blood Group</label>
@@ -563,11 +562,11 @@
         </div>
         <div class="field">
           <label>Height (cm)</label>
-          <input type="number" name="height" placeholder="e.g. 95" min="30" max="200" />
+          <input type="number" name="height" min="30" max="200" inputmode="numeric" />
         </div>
         <div class="field">
           <label>Weight (kg)</label>
-          <input type="number" name="weight" placeholder="e.g. 14" min="1" max="200" step="0.1" />
+          <input type="number" name="weight" min="1" max="200" step="0.1" inputmode="numeric" />
         </div>
       </div>
 
@@ -576,23 +575,23 @@
       <div class="grid-3 mt-4">
         <div class="field">
           <label>House Number</label>
-          <input type="text" name="addr_house" placeholder="No. / Flat" />
+          <input type="text" name="addr_house" />
         </div>
         <div class="field">
           <label>Street Name</label>
-          <input type="text" name="addr_street" placeholder="Street" />
+          <input type="text" name="addr_street" />
         </div>
         <div class="field">
           <label>Area / Locality</label>
-          <input type="text" name="addr_area" placeholder="Area" />
+          <input type="text" name="addr_area" />
         </div>
         <div class="field">
           <label>Landmark</label>
-          <input type="text" name="addr_landmark" placeholder="Nearby landmark" />
+          <input type="text" name="addr_landmark" />
         </div>
         <div class="field col-span-2">
           <label>City, State &amp; Pin Code</label>
-          <input type="text" name="addr_city" placeholder="e.g. Bangalore, Karnataka – 560043" />
+          <input type="text" name="addr_city" />
         </div>
       </div>
     </div>
@@ -616,15 +615,15 @@
       <div class="grid-3">
         <div class="field">
           <label>First Name <span class="req">*</span></label>
-          <input type="text" name="mom_first" placeholder="First name" />
+          <input type="text" name="mom_first" />
         </div>
         <div class="field">
           <label>Middle Name</label>
-          <input type="text" name="mom_middle" placeholder="Middle name" />
+          <input type="text" name="mom_middle" />
         </div>
         <div class="field">
           <label>Last / Surname</label>
-          <input type="text" name="mom_last" placeholder="Surname" />
+          <input type="text" name="mom_last" />
         </div>
       </div>
 
@@ -637,27 +636,27 @@
         <div class="grid-3">
           <div class="field">
             <label>House Number</label>
-            <input type="text" name="mom_addr_house" placeholder="No. / Flat" />
+            <input type="text" name="mom_addr_house" />
           </div>
           <div class="field">
             <label>Street Name</label>
-            <input type="text" name="mom_addr_street" placeholder="Street" />
+            <input type="text" name="mom_addr_street" />
           </div>
           <div class="field">
             <label>Area</label>
-            <input type="text" name="mom_addr_area" placeholder="Area" />
+            <input type="text" name="mom_addr_area" />
           </div>
           <div class="field">
             <label>Landmark</label>
-            <input type="text" name="mom_addr_landmark" placeholder="Landmark" />
+            <input type="text" name="mom_addr_landmark" />
           </div>
           <div class="field">
             <label>City, State</label>
-            <input type="text" name="mom_addr_city" placeholder="City, State" />
+            <input type="text" name="mom_addr_city" />
           </div>
           <div class="field">
             <label>Pin Code</label>
-            <input type="text" name="mom_addr_pin" placeholder="Pin Code" maxlength="6" />
+            <input type="text" name="mom_addr_pin" maxlength="6" />
           </div>
         </div>
       </div>
@@ -665,11 +664,11 @@
       <div class="grid-2 mt-4">
         <div class="field">
           <label>Mobile Number <span class="req">*</span></label>
-          <input type="tel" name="mom_mobile" placeholder="+91 98765 43210" />
+          <input type="tel" name="mom_mobile" pattern="[6-9][0-9]{9}" maxlength="10" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'')" />
         </div>
         <div class="field">
           <label>Email</label>
-          <input type="email" name="mom_email" placeholder="email@example.com" />
+          <input type="email" name="mom_email" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" />
         </div>
       </div>
 
@@ -678,31 +677,31 @@
       <div class="grid-2">
         <div class="field">
           <label>Qualification</label>
-          <input type="text" name="mom_qual" placeholder="Highest qualification" />
+          <input type="text" name="mom_qual" />
         </div>
         <div class="field">
           <label>Occupation</label>
-          <input type="text" name="mom_occ" placeholder="Job title / Role" />
+          <input type="text" name="mom_occ" />
         </div>
         <div class="field">
           <label>Company Name</label>
-          <input type="text" name="mom_company" placeholder="Employer name" />
+          <input type="text" name="mom_company" />
         </div>
         <div class="field">
           <label>Designation</label>
-          <input type="text" name="mom_desig" placeholder="Designation" />
+          <input type="text" name="mom_desig" />
         </div>
         <div class="field col-span-2">
           <label>Company Address</label>
-          <input type="text" name="mom_company_addr" placeholder="Full company address" />
+          <input type="text" name="mom_company_addr" />
         </div>
         <div class="field">
           <label>Work Contact No.</label>
-          <input type="tel" name="mom_work_phone" placeholder="Work number" />
+          <input type="tel" name="mom_work_phone" pattern="[6-9][0-9]{9}" maxlength="10" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'')" />
         </div>
         <div class="field">
           <label>Work Email</label>
-          <input type="email" name="mom_work_email" placeholder="Work email" />
+          <input type="email" name="mom_work_email" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" />
         </div>
       </div>
     </div>
@@ -713,15 +712,15 @@
       <div class="grid-3">
         <div class="field">
           <label>First Name <span class="req">*</span></label>
-          <input type="text" name="dad_first" placeholder="First name" />
+          <input type="text" name="dad_first" />
         </div>
         <div class="field">
           <label>Middle Name</label>
-          <input type="text" name="dad_middle" placeholder="Middle name" />
+          <input type="text" name="dad_middle" />
         </div>
         <div class="field">
           <label>Last / Surname</label>
-          <input type="text" name="dad_last" placeholder="Surname" />
+          <input type="text" name="dad_last" />
         </div>
       </div>
 
@@ -734,27 +733,27 @@
         <div class="grid-3">
           <div class="field">
             <label>House Number</label>
-            <input type="text" name="dad_addr_house" placeholder="No. / Flat" />
+            <input type="text" name="dad_addr_house" />
           </div>
           <div class="field">
             <label>Street Name</label>
-            <input type="text" name="dad_addr_street" placeholder="Street" />
+            <input type="text" name="dad_addr_street" />
           </div>
           <div class="field">
             <label>Area</label>
-            <input type="text" name="dad_addr_area" placeholder="Area" />
+            <input type="text" name="dad_addr_area" />
           </div>
           <div class="field">
             <label>Landmark</label>
-            <input type="text" name="dad_addr_landmark" placeholder="Landmark" />
+            <input type="text" name="dad_addr_landmark" />
           </div>
           <div class="field">
             <label>City, State</label>
-            <input type="text" name="dad_addr_city" placeholder="City, State" />
+            <input type="text" name="dad_addr_city" />
           </div>
           <div class="field">
             <label>Pin Code</label>
-            <input type="text" name="dad_addr_pin" placeholder="Pin Code" maxlength="6" />
+            <input type="text" name="dad_addr_pin" maxlength="6" />
           </div>
         </div>
       </div>
@@ -762,11 +761,11 @@
       <div class="grid-2 mt-4">
         <div class="field">
           <label>Mobile Number <span class="req">*</span></label>
-          <input type="tel" name="dad_mobile" placeholder="+91 98765 43210" />
+          <input type="tel" name="dad_mobile" pattern="[6-9][0-9]{9}" maxlength="10" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'')" />
         </div>
         <div class="field">
           <label>Email</label>
-          <input type="email" name="dad_email" placeholder="email@example.com" />
+          <input type="email" name="dad_email" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" />
         </div>
       </div>
 
@@ -775,31 +774,31 @@
       <div class="grid-2">
         <div class="field">
           <label>Qualification</label>
-          <input type="text" name="dad_qual" placeholder="Highest qualification" />
+          <input type="text" name="dad_qual" />
         </div>
         <div class="field">
           <label>Occupation</label>
-          <input type="text" name="dad_occ" placeholder="Job title / Role" />
+          <input type="text" name="dad_occ" />
         </div>
         <div class="field">
           <label>Company Name</label>
-          <input type="text" name="dad_company" placeholder="Employer name" />
+          <input type="text" name="dad_company" />
         </div>
         <div class="field">
           <label>Designation</label>
-          <input type="text" name="dad_desig" placeholder="Designation" />
+          <input type="text" name="dad_desig" />
         </div>
         <div class="field col-span-2">
           <label>Company Address</label>
-          <input type="text" name="dad_company_addr" placeholder="Full company address" />
+          <input type="text" name="dad_company_addr" />
         </div>
         <div class="field">
           <label>Work Contact No.</label>
-          <input type="tel" name="dad_work_phone" placeholder="Work number" />
+          <input type="tel" name="dad_work_phone" pattern="[6-9][0-9]{9}" maxlength="10" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'')" />
         </div>
         <div class="field">
           <label>Work Email</label>
-          <input type="email" name="dad_work_email" placeholder="Work email" />
+          <input type="email" name="dad_work_email" pattern="[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}" />
         </div>
       </div>
     </div>
@@ -810,15 +809,15 @@
       <div class="grid-3">
         <div class="field">
           <label>Relation to Student</label>
-          <input type="text" name="emg_relation" placeholder="e.g. Grandparent, Uncle" />
+          <input type="text" name="emg_relation" />
         </div>
         <div class="field">
           <label>Full Name</label>
-          <input type="text" name="emg_name" placeholder="Contact's name" />
+          <input type="text" name="emg_name" />
         </div>
         <div class="field">
           <label>Contact Number</label>
-          <input type="tel" name="emg_phone" placeholder="+91 …" />
+          <input type="tel" name="emg_phone" pattern="[6-9][0-9]{9}" maxlength="10" inputmode="numeric" oninput="this.value=this.value.replace(/[^0-9]/g,'')" />
         </div>
       </div>
     </div>
@@ -852,11 +851,11 @@
         </thead>
         <tbody id="sibling-rows">
           <tr>
-            <td><input type="text" name="sib1_name" placeholder="Full name" /></td>
+            <td><input type="text" name="sib1_name" /></td>
             <td><select name="sib1_gender"><option value="">—</option><option>Male</option><option>Female</option></select></td>
             <td><input type="date" name="sib1_dob" /></td>
-            <td><input type="text" name="sib1_school" placeholder="School name" /></td>
-            <td><input type="text" name="sib1_grade" placeholder="Grade" /></td>
+            <td><input type="text" name="sib1_school" /></td>
+            <td><input type="text" name="sib1_grade" /></td>
             <td><select name="sib1_alum"><option value="">—</option><option>Yes</option><option>No</option></select></td>
           </tr>
         </tbody>
@@ -939,11 +938,11 @@
     const tbody = document.getElementById('sibling-rows');
     const tr = document.createElement('tr');
     tr.innerHTML = `
-      <td><input type="text" name="sib${siblingCount}_name" placeholder="Full name" /></td>
+      <td><input type="text" name="sib${siblingCount}_name" /></td>
       <td><select name="sib${siblingCount}_gender"><option value="">—</option><option>Male</option><option>Female</option></select></td>
       <td><input type="date" name="sib${siblingCount}_dob" /></td>
-      <td><input type="text" name="sib${siblingCount}_school" placeholder="School name" /></td>
-      <td><input type="text" name="sib${siblingCount}_grade" placeholder="Grade" /></td>
+      <td><input type="text" name="sib${siblingCount}_school" /></td>
+      <td><input type="text" name="sib${siblingCount}_grade" /></td>
       <td><select name="sib${siblingCount}_alum"><option value="">—</option><option>Yes</option><option>No</option></select></td>
     `;
     tbody.appendChild(tr);
@@ -1083,7 +1082,7 @@
       branch:           'Hennur'
     };
 
-    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxVIX2T_ulmzuqVO7TzdlWY7BVg3-ep-iXfOrzlKqrCXrZ7cfjBP7vvbLztSxGgqUUzYA/exec';
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzz80lJAFjZTbT8EMoZEO2LWZN0y21DMe25jKc_-vNOXnPOAgMu2XWlZ7Uqd-UyxW-WXg/exec';
 
     try {
       // 1. Send to Google Apps Script → email + Google Sheet
