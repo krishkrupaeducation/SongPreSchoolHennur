@@ -1,5 +1,108 @@
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzi_A12N-KEm-uwsSJiTIZmEblWXyimlIVC4Q73Pfrpn82rM3J-X22g8WT3LeZgSfJqag/exec';
 
+// HERO CAROUSEL
+// To add photos: put them in assets/hero/ with these exact names (or edit the list).
+// Any file that doesn't exist yet is skipped automatically, so you can add photos one at a time.
+// Recommended: landscape, 1600 x 1200 px, JPG or WebP, under 300 KB each.
+// Write a short, true description in "alt" for each photo (it helps Google and screen readers).
+const HERO_PHOTOS = [
+  { src: 'assets/hero/hero-2.jpg', alt: 'Children learning in a classroom at S.O.N.G. Preschool Hennur' },
+  { src: 'assets/hero/hero-3.jpg', alt: 'Play-based learning activity at S.O.N.G. Preschool, Kalyan Nagar' },
+  { src: 'assets/hero/hero-4.jpg', alt: 'Toddler playgroup corner at S.O.N.G. Preschool Hennur' },
+  { src: 'assets/hero/hero-5.jpg', alt: 'Montessori materials at S.O.N.G. Preschool Hennur' },
+  { src: 'assets/hero/hero-6.jpg', alt: 'Art and craft activity at S.O.N.G. Preschool Bangalore' },
+  { src: 'assets/hero/hero-7.jpg', alt: 'Daycare rest and reading area at S.O.N.G. Hennur' },
+  { src: 'assets/hero/hero-8.jpg', alt: 'Outdoor play area at S.O.N.G. Preschool Hennur' },
+  { src: 'assets/hero/hero-9.jpg', alt: 'Celebration day at S.O.N.G. Preschool Hennur' }
+];
+
+(function initHeroCarousel() {
+  const root  = document.getElementById('hero-carousel');
+  const track = document.getElementById('hero-track');
+  if (!root || !track) return;
+  const prev  = document.getElementById('hero-prev');
+  const next  = document.getElementById('hero-next');
+  const dotsEl = document.getElementById('hero-dots');
+  const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const INTERVAL = 5000;
+  let index = 0, timer = null, paused = false;
+
+  const slides = () => Array.from(track.querySelectorAll('.hero-slide'));
+
+  function show(i) {
+    const all = slides();
+    if (!all.length) return;
+    index = (i + all.length) % all.length;
+    all.forEach((s, n) => {
+      const on = n === index;
+      s.classList.toggle('is-active', on);
+      s.setAttribute('aria-hidden', on ? 'false' : 'true');
+    });
+    Array.from(dotsEl.children).forEach((d, n) => d.classList.toggle('active', n === index));
+  }
+
+  function renderDots() {
+    const all = slides();
+    dotsEl.innerHTML = '';
+    all.forEach((_, n) => {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'hero-dot' + (n === index ? ' active' : '');
+      b.setAttribute('aria-label', 'Show photo ' + (n + 1));
+      b.addEventListener('click', () => { show(n); restart(); });
+      dotsEl.appendChild(b);
+    });
+    const multi = all.length > 1;
+    prev.hidden = next.hidden = dotsEl.hidden = !multi;
+  }
+
+  function start() { if (!reduceMotion && !paused && slides().length > 1) timer = setInterval(() => show(index + 1), INTERVAL); }
+  function stop()  { clearInterval(timer); timer = null; }
+  function restart() { stop(); start(); }
+
+  prev.addEventListener('click', () => { show(index - 1); restart(); });
+  next.addEventListener('click', () => { show(index + 1); restart(); });
+  root.addEventListener('mouseenter', () => { paused = true; stop(); });
+  root.addEventListener('mouseleave', () => { paused = false; restart(); });
+  root.addEventListener('focusin',  () => { paused = true; stop(); });
+  root.addEventListener('focusout', () => { paused = false; restart(); });
+  document.addEventListener('visibilitychange', () => { document.hidden ? stop() : restart(); });
+
+  // swipe on phones
+  let x0 = null;
+  root.addEventListener('touchstart', e => { x0 = e.touches[0].clientX; }, { passive: true });
+  root.addEventListener('touchend', e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) { show(index + (dx < 0 ? 1 : -1)); restart(); }
+    x0 = null;
+  });
+
+  // Load extra photos only after the page has finished loading, keep the ones that exist, in order.
+  function loadExtras() {
+    Promise.all(HERO_PHOTOS.map(p => new Promise(res => {
+      const img = new Image();
+      img.onload = () => res(p);
+      img.onerror = () => res(null);
+      img.src = p.src;
+    }))).then(found => {
+      found.filter(Boolean).forEach(p => {
+        const fig = document.createElement('figure');
+        fig.className = 'hero-slide';
+        fig.setAttribute('aria-hidden', 'true');
+        const img = document.createElement('img');
+        img.src = p.src; img.alt = p.alt; img.className = 'hero-main-img'; img.decoding = 'async';
+        fig.appendChild(img);
+        track.appendChild(fig);
+      });
+      renderDots();
+      start();
+    });
+  }
+  if (document.readyState === 'complete') loadExtras();
+  else window.addEventListener('load', loadExtras);
+})();
+
 // ABOUT TAB SWITCHING
 document.querySelectorAll('.tab-button[data-tab]').forEach((button) => {
   button.addEventListener('click', () => {
@@ -24,10 +127,10 @@ document.querySelectorAll('.tab-button[data-daytab]').forEach((button) => {
 
 // ENVIRONMENTS
 const envItems = [
-  { age: 'Toddler | 2 to 3 years', name: 'Bright', desc: 'Our Toddler environment, Bright, is a warm, nurturing space where children take their first confident steps into learning. Through sensory play, stories, movement, music, and simple routines, children begin building independence, communication, curiosity, and comfort in a safe preschool setting.' },
-  { age: 'Pre-KG | 3 to 4 years', name: 'Shine', desc: 'Our Pre-KG environment, Shine, helps children grow through joyful exploration and guided play. With hands-on activities, storytelling, early language development, creative expression, social interaction, and discovery-based learning, each child is encouraged to explore at their own pace, build meaningful friendships, and develop a genuine love for learning. Children begin to shine as confident, curious, and expressive learners who are ready to take on new challenges.' },
-  { age: 'Jr. KG | 4 to 5 years', name: 'Spark', desc: 'Our Jr. KG environment, Spark, encourages children to ask questions, solve problems, create, and collaborate. Through project-based activities, early literacy and numeracy, storytelling, art, music, and purposeful play, children build strong foundations for school readiness and independent thinking.' },
-  { age: 'Sr. KG | 5 to 6 years', name: 'Ignite', desc: 'Our Sr. KG environment, Ignite, prepares children for the next stage of formal schooling with confidence. Children strengthen literacy, numeracy, communication, independence, creativity, and classroom readiness through meaningful projects, hands-on learning, collaboration, and age-appropriate academic foundations.' }
+  { age: 'Toddler / Playgroup | 2 to 3 years', name: 'Bright', desc: 'Our Toddler environment, Bright, is a warm, nurturing space where children take their first confident steps into learning. Through sensory play, stories, movement, music, and simple routines, children begin building independence, communication, curiosity, and comfort in a safe preschool setting.' },
+  { age: 'Pre-KG / Nursery | 3 to 4 years', name: 'Shine', desc: 'Our Pre-KG environment, Shine, helps children grow through joyful exploration and guided play. With hands-on activities, storytelling, early language development, creative expression, social interaction, and discovery-based learning, each child is encouraged to explore at their own pace, build meaningful friendships, and develop a genuine love for learning. Children begin to shine as confident, curious, and expressive learners who are ready to take on new challenges.' },
+  { age: 'Jr. KG / LKG | 4 to 5 years', name: 'Spark', desc: 'Our Jr. KG environment, Spark, encourages children to ask questions, solve problems, create, and collaborate. Through project-based activities, early literacy and numeracy, storytelling, art, music, and purposeful play, children build strong foundations for school readiness and independent thinking.' },
+  { age: 'Sr. KG / UKG | 5 to 6 years', name: 'Ignite', desc: 'Our Sr. KG environment, Ignite, prepares children for the next stage of formal schooling with confidence. Children strengthen literacy, numeracy, communication, independence, creativity, and classroom readiness through meaningful projects, hands-on learning, collaboration, and age-appropriate academic foundations.' }
 ];
 
 let envIndex = 0;
@@ -200,3 +303,33 @@ if (form) {
     }
   });
 }
+
+
+// INSTAGRAM FEED (Behold) — loads only when the section is about to scroll into view
+(function initInstagramFeed() {
+  const box = document.getElementById('ig-feed');
+  if (!box) return;
+  const feedId = (box.dataset.feedId || '').trim();
+  if (!feedId) { box.hidden = true; return; }
+
+  let loaded = false;
+  function load() {
+    if (loaded) return;
+    loaded = true;
+    const w = document.createElement('behold-widget');
+    w.setAttribute('feed-id', feedId);
+    box.appendChild(w);
+    const s = document.createElement('script');
+    s.type = 'module';
+    s.src = 'https://w.behold.so/widget.js';
+    document.head.appendChild(s);
+  }
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver(entries => {
+      if (entries.some(e => e.isIntersecting)) { load(); io.disconnect(); }
+    }, { rootMargin: '400px' });
+    io.observe(box);
+  } else {
+    load();
+  }
+})();
