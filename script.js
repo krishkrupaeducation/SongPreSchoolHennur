@@ -1,19 +1,25 @@
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzi_A12N-KEm-uwsSJiTIZmEblWXyimlIVC4Q73Pfrpn82rM3J-X22g8WT3LeZgSfJqag/exec';
 
 // HERO CAROUSEL
-// To add photos: put them in assets/hero/ with these exact names (or edit the list).
-// Any file that doesn't exist yet is skipped automatically, so you can add photos one at a time.
-// Recommended: landscape, 1600 x 1200 px, JPG or WebP, under 300 KB each.
-// Write a short, true description in "alt" for each photo (it helps Google and screen readers).
+// To add photos: put them in assets/hero/ named hero-2, hero-3, ... hero-12.
+// Any of these endings works: .jpg .jpeg .png .webp (upper or lower case, e.g. hero-6.JPG).
+// Any number that doesn't exist yet is skipped automatically, so you can add photos one at a time.
+// Recommended: landscape, 1600 x 1200 px, under 300 KB each.
+// Write a short, true description for each photo below (it helps Google and screen readers).
+const HERO_FOLDER = 'assets/hero/';
+const HERO_EXTENSIONS = ['jpg', 'jpeg', 'png', 'webp', 'JPG', 'JPEG', 'PNG', 'WEBP'];
 const HERO_PHOTOS = [
-  { src: 'assets/hero/hero-2.jpg', alt: 'Children learning in a classroom at S.O.N.G. Preschool Hennur' },
-  { src: 'assets/hero/hero-3.jpg', alt: 'Play-based learning activity at S.O.N.G. Preschool, Kalyan Nagar' },
-  { src: 'assets/hero/hero-4.jpg', alt: 'Toddler playgroup corner at S.O.N.G. Preschool Hennur' },
-  { src: 'assets/hero/hero-5.jpg', alt: 'Montessori materials at S.O.N.G. Preschool Hennur' },
-  { src: 'assets/hero/hero-6.jpg', alt: 'Art and craft activity at S.O.N.G. Preschool Bangalore' },
-  { src: 'assets/hero/hero-7.jpg', alt: 'Daycare rest and reading area at S.O.N.G. Hennur' },
-  { src: 'assets/hero/hero-8.jpg', alt: 'Outdoor play area at S.O.N.G. Preschool Hennur' },
-  { src: 'assets/hero/hero-9.jpg', alt: 'Celebration day at S.O.N.G. Preschool Hennur' }
+  { name: 'hero-2',  alt: 'Children learning in a classroom at S.O.N.G. Preschool Hennur' },
+  { name: 'hero-3',  alt: 'Play-based learning activity at S.O.N.G. Preschool, Kalyan Nagar' },
+  { name: 'hero-4',  alt: 'Toddler playgroup corner at S.O.N.G. Preschool Hennur' },
+  { name: 'hero-5',  alt: 'Montessori materials at S.O.N.G. Preschool Hennur' },
+  { name: 'hero-6',  alt: 'Art and craft activity at S.O.N.G. Preschool Bangalore' },
+  { name: 'hero-7',  alt: 'Daycare rest and reading area at S.O.N.G. Hennur' },
+  { name: 'hero-8',  alt: 'Outdoor play area at S.O.N.G. Preschool Hennur' },
+  { name: 'hero-9',  alt: 'Celebration day at S.O.N.G. Preschool Hennur' },
+  { name: 'hero-10', alt: 'Activity time at S.O.N.G. Preschool Hennur' },
+  { name: 'hero-11', alt: 'Learning space at S.O.N.G. Preschool Hennur' },
+  { name: 'hero-12', alt: 'Children at play at S.O.N.G. Preschool Hennur' }
 ];
 
 (function initHeroCarousel() {
@@ -79,13 +85,24 @@ const HERO_PHOTOS = [
   });
 
   // Load extra photos only after the page has finished loading, keep the ones that exist, in order.
+  // For each photo, try each file ending in turn and keep the first one that exists.
+  function findPhoto(p) {
+    return new Promise(res => {
+      let i = 0;
+      const tryNext = () => {
+        if (i >= HERO_EXTENSIONS.length) return res(null);
+        const src = HERO_FOLDER + p.name + '.' + HERO_EXTENSIONS[i++];
+        const img = new Image();
+        img.onload = () => res({ src, alt: p.alt });
+        img.onerror = tryNext;
+        img.src = src;
+      };
+      tryNext();
+    });
+  }
+
   function loadExtras() {
-    Promise.all(HERO_PHOTOS.map(p => new Promise(res => {
-      const img = new Image();
-      img.onload = () => res(p);
-      img.onerror = () => res(null);
-      img.src = p.src;
-    }))).then(found => {
+    Promise.all(HERO_PHOTOS.map(findPhoto)).then(found => {
       found.filter(Boolean).forEach(p => {
         const fig = document.createElement('figure');
         fig.className = 'hero-slide';
