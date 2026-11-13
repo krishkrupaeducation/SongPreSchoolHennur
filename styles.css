@@ -1854,6 +1854,14 @@ h3 {
   transition: 0.2s ease;
 }
 .programme-link:hover { border-color: var(--pink); transform: translateY(-2px); }
+.programme-link--featured {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, #ff9248 0%, var(--pink) 52%, #8d117e 100%);
+  border-color: transparent;
+}
+.programme-link--featured .programme-link-age { color: rgba(255,255,255,0.85); }
+.programme-link--featured .programme-link-name { color: var(--white); }
+.programme-link--featured:hover { border-color: transparent; }
 .programme-link-age {
   font-size: 0.78rem;
   letter-spacing: 0.16em;
